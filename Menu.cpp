@@ -24,7 +24,7 @@ int main() {
     if (userInput.front() == '1' || 
         userInput.front() == 'C' || 
         userInput.front() == 'c') {
-      cout << Entering computing mode." << endl;
+      cout << "Entering computing mode." << endl;
       // code in the computing mode here.
     }
     else if (userInput.front() == '2' || 
