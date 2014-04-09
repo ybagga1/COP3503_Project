@@ -21,29 +21,37 @@ int main() {
     cout << endl;
     cout << "Enter an option from the menu:" << endl;
     cin >> userInput;
-    if (userInput.front() == '1' || 
-        userInput.front() == 'C' || 
-        userInput.front() == 'c') {
+    if (userInput.at(0) == '1' || 
+        userInput.at(0) == 'C' || 
+        userInput.at(0) == 'c') {
       cout << "Entering computing mode." << endl;
       // code in the computing mode here.
     }
-    else if (userInput.front() == '2' || 
-             userInput.front() == 'H' || 
-             userInput.front() == 'h') {
-      cout << "Entering help menu." << endl;
-      // code in the help menu here.
+    else if (userInput.at(0) == '2' || 
+             userInput.at(0) == 'H' || 
+             userInput.at(0) == 'h') {
+		cout << "Entering help menu..." << endl;
+		cout << string(5, '\n');
+		cout << "------------------------------------------------------------------------------" << endl;
+		cout << "Compute: Allows the user to enter an expression for computation." << endl;
+		cout << "Help: Brings the user to the help menu." << endl;
+		cout << "Review: Allows the user to enter the program's review mode in order" << endl;
+		cout << "to review past entries and/or request a decimal answer form." << endl;
+		cout << "Quit: Closes the program." << endl;
+		cout << "------------------------------------------------------------------------------" << endl;
+		cout << string(5, '\n');
     }
-    else if (userInput.front() == '3' || 
-             userInput.front() == 'R' || 
-             userInput.front() == 'r') {
+    else if (userInput.at(0) == '3' || 
+             userInput.at(0) == 'R' || 
+             userInput.at(0) == 'r') {
       cout << "Entering review mode." << endl;
       // code in the review mode here.
     }
-    else if (userInput.front() == '4' || 
-             userInput.front() == 'Q' || 
-             userInput.front() == 'q') {
-      cout << "Quitting..." << end;
-      menuloop = 0;
+    else if (userInput.at(0) == '4' || 
+             userInput.at(0) == 'Q' || 
+             userInput.at(0) == 'q') {
+      cout << "Quitting..." << endl;
+      menuLoop = 0;
     }
     else {
       cout << "Invalid input." << endl;
