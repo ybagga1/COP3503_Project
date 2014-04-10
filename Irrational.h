@@ -10,6 +10,9 @@ public:
 	// addition/subtraction/division/multiplication/nthroot/log constructor
 	Irrational(Number a, string operand, Number b);
 	~Irrational();
+private:
+	string type;
+	float value;
 };
 
 #endif /* IRRATIONAL_H_ */
