@@ -12,7 +12,10 @@ public:
 	Number exponentiate(Number a, Number b);
 	Number logbase(Number a, Number b);
 	Number nthroot(Number a, Number b);
-	Number simplifyAns(Number a, Number b);
+	Number simplifyAns(Number a);
+	Number toRational(double a); 
+private:
+	int aNum, aDenom, bNum, bDenom, ansNum, ansDenom;
 };
 
 #endif /* OPERATIONS_H_ */
