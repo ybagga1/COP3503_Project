@@ -85,7 +85,7 @@ int main() {
 						 helpInput.at(0) == 'q' ) {
 					cout << "Quitting..." << endl;
 					helpLoop = 0;
-					menuLoop = 0;
+					computeLoop = 0;
 				}
 			}
 		}
@@ -163,7 +163,7 @@ int main() {
 						 reviewInput.at(0) == 'q') {
 					cout << "Quitting..." << endl;
 					reviewLoop = 0;
-					menuLoop = 0;
+					computeLoop = 0;
 				}
 			}
 		}
