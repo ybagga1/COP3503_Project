@@ -4,6 +4,7 @@
 
 class Shunting {
 public:
+	Shunting();
 	//Actually does the calculations
 	//Has to return a number because of the ans keyword
 	//Calls parseTokens, then convertInput, then behaves like RPNtoDouble
@@ -17,7 +18,7 @@ private:
 	//Called by evaluate 1st
 	//Parses input string into separate 
 	//AKA getExpressionTokens
-	vector<string> parseTokens(vector<string> input);
+	vector<string> parseTokens(const string& input);
 	
 	//Called by evaluate 2nd
 	//Rearranges the elements into PEMDAS
