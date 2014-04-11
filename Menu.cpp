@@ -9,21 +9,26 @@ int main() {
 	int computeLoop = 1;
 	int helpLoop = 0;
 	int reviewLoop = 0;
-	string computeInput, helpInput, reviewInput;
+	string computeInput, helpInput, reviewInput, expressionOld;
 	while (computeLoop == 1) {
 		cout << "------------------------------------------------------------------------------" << endl;
 		cout << "Expression Calculator Project"													 << endl;
-		cout << "By: Yayati Bagga, Nick Diez, Kayleigh Dvorak, Mathew Giaramite, Freddy Jimenez" << endl;
+		cout << "By: Yayati Bagga, Nick Diez, Kayleigh Dvorak, Mathew Giaramita, Freddy Jimenez" << endl;
 		cout << endl;
 		cout << "Enter an expression to compute, menu commands are: " 							 << endl;
-		cout << "Help" 																			 << endl;
-		cout << "Review" 																		 << endl;
-		cout << "Quit" 																			 << endl;
+		cout << "Help, Review, Quit" 															 << endl;
+		cout << "!!! WARNING !!! Include a space between each operation of the following type:"  << endl;
+		cout << "+, -, *, /, ^." 																 << endl;
 		cout << endl;
-		cout << "Enter an expression or an option from the menu:" 								 << endl;
-		cin >> computeInput;
-		if (computeInput.at(0) == 'H' || 
-			computeInput.at(0) == 'h') {
+		cout << "Enter an expression or an option from the menu:" 		<< endl;
+		cin.clear();
+		computeInput.clear();
+		getline(cin, computeInput);
+		if (computeInput == "") {
+			cout << "Nothing here to check.." << endl;
+		}
+		else if (computeInput.at(0) == 'H' || 
+				 computeInput.at(0) == 'h') {
 			cout << "Entering help menu..." << endl;
 			helpLoop = 1;
 			while (helpLoop == 1) {
@@ -42,11 +47,11 @@ int main() {
 					helpInput.at(0) == 'f' ) {
 					cout << "------------------------------------------------------------------------------" << endl;
 					cout << "Expression Format Help Menu:" 													 << endl;
-					cout << "Add: \'x+y\' where x and y are either rational or irrational numbers."        	 << endl;
-					cout << "Subtract: \'x-y\' where x and y are either rational or irrational numbers."   	 << endl;
-					cout << "Multiply: \'x*y\' where x and y are either rational or irrational numbers." 	 << endl;
-					cout << "Divide: \'x/y\' where x and y are either rational or irrational numbers." 		 << endl;
-					cout << "Exponent: \'x^y\' where x and y are either rational or irrational numbers." 	 << endl;
+					cout << "Add: \'x + y\' where x and y are either rational or irrational numbers."        << endl;
+					cout << "Subtract: \'x - y\' where x and y are either rational or irrational numbers."   << endl;
+					cout << "Multiply: \'x * y\' where x and y are either rational or irrational numbers." 	 << endl;
+					cout << "Divide: \'x / y\' where x and y are either rational or irrational numbers." 	 << endl;
+					cout << "Exponent: \'x ^ y\' where x and y are either rational or irrational numbers." 	 << endl;
 					cout << "Nth Root: \'xrt:y' where x and y are either rational or irrational numbers." 	 << endl;
 					cout << "Square Root: \'sqrt:x\' where x is either a rational or irrational number."     << endl;
 					cout << "Log Base: \'log_y:x\' where x and y are either rational or irrational numbers." << endl;
@@ -68,10 +73,10 @@ int main() {
 						 helpInput.at(0) == 'c' ) {
 					cout << "------------------------------------------------------------------------------" << endl;
 					cout << "Nick Diez: 		Menu and Operations" 										 << endl;
-					cout << "Mathew Giaramite: 	Operations" 												 << endl;
-					cout << "Kayleigh Dvorak: 	Shunting Yard Algorithm" 									 << endl;
-					cout << "Freddy Jimenez:  	???" 														 << endl;
-					cout << "Yayati Bagga: 		???" 														 << endl;
+					cout << "Mathew Giaramita: 	Operations and Irrational" 									 << endl;
+					cout << "Kayleigh Dvorak: 	Shunting Yard Algorithm and Rational" 						 << endl;
+					cout << "Freddy Jimenez:  	toString stuff" 											 << endl;
+					cout << "Yayati Bagga: 		Shunting help" 												 << endl;
 					cout << "------------------------------------------------------------------------------" << endl;
 				}
 				else if (helpInput.at(0) == '4' ||
@@ -108,7 +113,7 @@ int main() {
 					reviewInput.at(0) == 'V' ||
 					reviewInput.at(0) == 'v') {
 					cout << "The previous expression was:" << endl;
-					// code goes here.
+					cout << expressionOld << endl;
 					cout << "Return to compute mode?" << endl;
 					cin >> reviewInput;
 					if (reviewInput.at(0) == 'Y' ||
@@ -140,7 +145,7 @@ int main() {
 						 reviewInput.at(0) == 'S' ||
 						 reviewInput.at(0) == 's') {
 					cout << "Setting ans to previous answer..." << endl;
-					// code goes here.
+					// HOAX, previous answer already set to ans HA
 					cout << "Previous answer stored in ans, return to compute mode?" << endl;
 					cin >> reviewInput;
 					if (reviewInput.at(0) == 'Y' ||
@@ -189,10 +194,13 @@ int main() {
 				 computeInput.at(0) == 'e' ||
 				 computeInput.at(0) == 'l' ||
 				 computeInput.at(0) == 's' ) {
+				 expressionOld = computeInput;
+				 computeInput.clear();
+				 cin.clear();
 					//expression was entered, shunting goes here.
 		}
 		else {
-			cout << "Invalid input." << endl;
+			cout << "Invalid expression..." << endl;
 		}
 	}
 }
