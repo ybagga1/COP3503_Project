@@ -6,21 +6,19 @@
 #include <list>
 #include <stack>
 #include <vector>
-
 using namespace std;
+
 Shunting::Shunting() {
- // map<> Operators(string op, int precedence);
- //typedef map <string, pair<int,int> > OperatorMap;
+typedef map <string, pair< int,int> > operatorMap;
 
 }
-
 typedef map <string, pair< int,int> > operatorMap;
- const operatorMap value_type assocs[] =
-    {  operatorMap value_type( "+", make_pair<int,int>( 0, 0 )),
-       operatorMap value_type( "-", make_pair<int,int>( 0, 0 )),
-       operatorMap value_type( "*", make_pair<int,int>( 5, 0 )),
-       operatorMap value_type( "/", make_pair<int,int>( 5, 0 )),
-       operatorMap value_type( "^", make_pair<int,int>( 5, 1 ))
+const operatorMap:: value_type assocs[] =
+    {  operatorMap :: value_type( "+", make_pair<int,int>( 0, 0 )),
+       operatorMap:: value_type( "-", make_pair<int,int>( 0, 0 )),
+       operatorMap:: value_type( "*", make_pair<int,int>( 5, 0 )),
+       operatorMap:: value_type( "/", make_pair<int,int>( 5, 0 )),
+       operatorMap:: value_type( "^", make_pair<int,int>( 5, 1 ))
        };
 
 // const OperatorMap opmap(assocs, assocs + sizeof(assocs)/sizeof(assocs[0]));
@@ -33,11 +31,10 @@ bool Shunting::isParenthesis(const string& str)
 bool Shunting:: isOperator(const string& str)
 {
     return str == "+" || str == "-" || str == "*" || str == "/" || str == "^";
-    else return false;
 }
-bool Shunting::isAssociative(const string str, int precedence)
+bool Shunting::isAssociative(const string& str, int precedence)
 {
-	const pair<int,int> p = peratormap.find(str)->second;
+	const pair<int,int> p = operatorMap.find(str)->second;
     if (p.second == 0) {
         return false;
     }
@@ -162,7 +159,7 @@ bool Shunting::convertInput(const vector<string>& input, const int& size, vector
 //Has to return a number because of the ans keyword
 //Calls parseTokens, then convertInput, then behaves like RPNtoDouble
 //Does this so the main isn't  cluttered like the one we saw
-Number Shunting:: evaluate(string input)
+Number* Shunting:: evaluate(string input)
 {
 	vector<string> tokens = parseTokens(input);
 	vector<string> converted;
@@ -221,7 +218,7 @@ Number Shunting:: evaluate(string input)
     return nums.top();
 }
 
-Number Shunting:: toNumber(string str){
+Number* Shunting:: toNumber(string str){
 	if(str.charAt(0) == 'l'  || str.charAt(0) == 'e' || str.charAt(0) == 'p' str.charAt(0) == 's')
 	{
 		return new Irrational(str);
@@ -241,4 +238,5 @@ Number Shunting:: toNumber(string str){
 		}
 	}
 	return new Rational(atoi(str));
+}
 }
