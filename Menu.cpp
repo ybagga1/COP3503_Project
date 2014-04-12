@@ -200,7 +200,8 @@ int main() {
 				 computeInput.at(0) == 's' ) {
 				expressionOld = computeInput;
 				cin.clear();
-				s->evaluate(computeInput);
+				ans = s->evaluate(computeInput);
+				cout << "The result of your expression is:" << ans->toString() << endl;
 				computeInput.clear();
 		}
 		else {
