@@ -8,6 +8,7 @@
 
 using namespace std;
 int main() {
+	Number* ans;
 	Shunting s = new Shunting();
 	int computeLoop = 1;
 	int helpLoop = 0;
