@@ -1,51 +1,151 @@
-#include 'Shunting.h'
+#include "Shunting.h"
+#include <iostream>
+#include <sstream>
+#include <map>
+#include <string>
+#include <list>
+#include <stack>
+#include <vector>
 using namespace std;
-
-//Declare hashmap of operators and link their precedence
-Shunting:: Shunting()
-{
-	map<> Operators(string op, int precedence);
+Shunting::Shunting() {
+ map<> Operators(string op, int precedence);
+ 
 }
 
+ map<> Operators(string operators, int precedence) {
+    {OpMap::value_type( "+", std::make_pair<int,int>( 0, LEFT_ASSOC ) ),      
+       OpMap::value_type( "-", std::make_pair<int,int>( 0, LEFT_ASSOC ) ),        
+       OpMap::value_type( "*", std::make_pair<int,int>( 5, LEFT_ASSOC ) ),        
+       OpMap::value_type( "/", std::make_pair<int,int>( 5, LEFT_ASSOC ) ) 
+       OpMap::value_type( "^", std::make_pair<int,int>( 10, RIGHT_ASSOC ) ) 
+       };    
 
-// Test if string is a parenthesis  
-//Called by parseTokens then convertInput  
+
 bool Shunting:: isParenthesis( const string& str)          
 {          
     return str == "(" || str == ")";        
-}        
-  
-// Test if str is an operator  
-//Called by all three methods        
+}   
+
 bool Shunting:: isOperator( const string& str)          
 {          
     return str == "+" || str == "-" || str == "*" || str == "/" || str == "^";        
 }  
-
-//Called only by convertInput
 bool Shunting::isAssociative(const string str, int precedence)
 {
-	return true;
+	if(str== "+" || strs == "-" || str == "/" || str == "*") return true;
+    else return false;
 }
 
-//Compares Operation order precedence
-//AKA cmpPrecedence
-int Shunting::comparePrec( const string& token1, const string& token2 )
-{
-	return 0;
+int Shunting:: comparePrec(const string& firsttoken, const string& secondtoken ) {
+ const pair<int,int> p1 = opmap.find( token1 )->first;
+ const pair<int,int> p2 = opmap.find( token2 )->first;
+
+    return p1.first - p2.first;
 }
 
-//Parses input string into separate elements
-vector<string> Shunting::parseTokens(const string& input)
-{
-	return input;
-}
+vector<string> Shunting::parseTokens(const string& input) {
+    vector<string> tokens;
+    string str = "";
+    for ( int i = 0; i < (int) input.length(); ++i)   {
+        const string token(1, input [i]);
 
-//Rearranges the elements into PEMDAS
-bool Shunting::convertInput(const vector<string>& input, const int& size, vector<string>& output)
-{
-	return true;
-}
+        if (isParenthesis(token) || isOperator(token))
+        {
+            if (!str.empty())
+            {
+                 tokens.push_back(str ) ;
+            }
+            str = "";
+            tokens.push_back(token);
+        }
+        else {
+            if (!token.empty() && token != " ")
+            {
+                str.append( token );
+            }
+            else
+            {
+                if (str != "")
+                {
+                    tokens.push_back(str);
+                    str = "";
+                }
+                }
+             }
+    }
+    return tokens; 
+    }
+  
+bool Shunting::convertInput(const vector<string>& input, const int& size, vector<string>& outputVec) {
+    bool success = true;
+    list <string> output;
+    stack<string> opstack;
+     for ( int i = 0; i < size; i++ )
+    {
+        const string token = input[ i ];
+        if ( isOperator(token)) {
+            const string operator1 = token; 
+             if (!opstack.empty())      
+            {      
+                string operator2 = opstack.top();
+                while (isOperator( operator2 ) &&          
+                        ((isAssociative(operator1, LEFT_ASSOC) &&  comparePrec(operator1, operator2) == 0 ) ||      
+                        ( comparePrec( operator1, operator2 ) < 0 )))      
+                {          
+                    opstack.pop();        
+                    output.push_back(operator2);                              
+  
+                    if (!opstack.empty())       
+                        operator2 = opstack.top();        
+                    else      
+                        break;      
+                }           
+            }
+             opstack.push(operator1);      
+        } 
+        else if ( token == "(")          
+        {          
+            opstack.push( token );          
+        }
+         else if ( token == ")" )          
+        {        
+            string firstToken  = opstack.top();  
+            while (firstToken != "(")          
+            {                          
+                output.push_back(firstToken);          
+                opstack.pop();      
+  
+                if (opstack.empty() ) break;    
+                firstToken = opstack.top();    
+            } 
+            if (!opstack.empty())opstack.pop();                               
+  
+            if ( firstToken != "(" )      
+            {                          
+                return false;      
+            }                                            
+        }          
+        else          
+        {          
+            output.push_back( token );          
+        }          
+    }              
+    while (!opstack.empty())          
+    {        
+        const string TokenStack = stack.top();      
+  
+        if ( isParenthesis(TokenStack ))    
+        {      
+            return false;      
+        }      
+        output.push_back( TokenStack );                        
+        opstack.pop();        
+    }          
+  
+    outputVec.assign(output.begin(),output.end() );    
+  
+    return success;      
+}          
 
 //Actually does the calculations
 //Has to return a number because of the ans keyword
@@ -53,7 +153,7 @@ bool Shunting::convertInput(const vector<string>& input, const int& size, vector
 //Does this so the main isn't  cluttered like the one we saw
 Number Shunting:: evaluate(string input)
 {
-	vector<string> tokens = getExpressionTokens(input);
+	vector<string> tokens = parseTokens(input);
 	vector<string> converted;
 	if(convertInput(tokens, tokens.size(), converted))
 	{
@@ -75,16 +175,16 @@ Number Shunting:: evaluate(string input)
 			else          
 			{    
 				Number result;    
-	  
+
 				// Token is an operator: pop top two entries          
 				const Number n2 = nums.top();        
 				nums.pop();                  
-	  
+
 				if (!nums.empty() )    
 				{    
 					const Number n1 = nums.top();        
 					nums.pop();               
-	  
+
 					//Get the result          
 					result = tokens[i] == "+" ? add(n1, n2) :          
 							 tokens[i] == "-" ? subtract(n1, n2) :          
@@ -100,8 +200,8 @@ Number Shunting:: evaluate(string input)
 					else     
 						result = n2;    
 				}    
-	  
-	  
+
+
 				// Push result onto stack                 
 				nums.push(result);          
 			}          
@@ -131,6 +231,4 @@ Number Shunting:: toNumber(string str){
 	}
 	return new Rational(atoi(str));
 }
-	
-	
-	
+
