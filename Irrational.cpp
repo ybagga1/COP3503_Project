@@ -1,5 +1,7 @@
+
 #include "Irrational.h"
 #include <cmath>
+#include <stdlib.h>
 
 Irrational::Irrational(){
 }
@@ -7,7 +9,7 @@ Irrational::Irrational(){
 Irrational::Irrational(string irr){
 	if(irr.at(0) == 'e'){
 		sType = "e";
-		fValue = 2.7;
+		fValue = 2.71828;
 	}
 	else if(irr.at(0) == 'l'){
 		sType = "log";
@@ -18,7 +20,7 @@ Irrational::Irrational(string irr){
 		for(i += 1; i<irr.length(); i++){
 			logOf = irr.at(i);
 		}
-		//fValue = (log (strToD logOf)/log (base);
+		//fValue = ((log (a) / (log (atol(base));
 	}
 	else if(irr.at(0) == 'p' || irr.at(0) == 'P'){
 		sType = "pi";
@@ -53,14 +55,37 @@ string Irrational::getType(){
 }
 
 string Irrational::toString(){
-	return "aaa";
+	string str;
+	if(sType == "e"){
+		str = "e";
+		return str;
+	}
+	else if(sType == "pi"){
+		str = "pi";
+		return str;
+	}
+	else if(sType == "log"){
+		str = "log_" + base + ":" + logOf;
+		return str;
+	}
+	else if(sType == "nrt"){
+		if(n == "2"){
+			str = "sqrt:" + rootOf;
+		}
+		else{
+			str = n + "rt:" + rootOf;
+		}
+		return str;
+	}
+	else{
+		return "No toString...error";
+	}
 }
 
 float Irrational::getValue(){
 	return fValue;
 }
 
-Number Irrational::simplify(){
-	Number * s = this;
-	return s;
+Number* Irrational::simplify(){
+
 }
