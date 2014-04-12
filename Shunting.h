@@ -2,6 +2,8 @@
 #define SHUNTING_H_
 #include "Number.h"
 #include "Rational.h"
+#include "Irrational.h"
+#include "Operations.h"
 #include <iostream>
 #include <sstream>
 #include <map>
@@ -9,6 +11,7 @@
 #include <list>
 #include <stack>
 #include <vector>
+#include <stdlib.h>
 
 using namespace std;
 
