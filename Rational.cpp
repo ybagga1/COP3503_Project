@@ -1,18 +1,20 @@
-#include 'Rational.h'
+#include "Rational.h"
+#include <string>
+using namespace std;
 
 
 Rational:: Rational(){
 	numerator = 1;
 	denominator = 1;
-	type = "Rational";
-	value = 1;
+	sType = "Rational";
+	fValue = 1;
 }
 
 Rational:: Rational(int numerator){
 	this->numerator = numerator;
 	this->denominator = 1;
-	type = "Rational";
-	value = numerator;
+	sType = "Rational";
+	fValue = numerator;
 }
 
 Rational:: Rational(int numerator, int denominator){
@@ -22,18 +24,18 @@ Rational:: Rational(int numerator, int denominator){
 	this->numerator = numerator;
 	this->denominator = denominator;
 	
-	type = "Rational";
-	value = (float)numerator / (float)denominator;
+	sType = "Rational";
+	fValue = (float)numerator / (float)denominator;
 	
 }
 
 
 int Rational:: getNum(){
-	return numerator;
+	return this->numerator;
 }
 
 int Rational:: getDenom(){
-	return denominator;
+	return this->denominator;
 }
 
 
@@ -44,20 +46,20 @@ string Rational:: toString(){
 	return number;
 	
 }
-string Rational::  type()
+string Rational:: getType()
 {
-	return type;
+	return this->sType;
 }
 
-float Rational::  value()
+float Rational::getValue()
 {
-	return value;
+	return this->fValue;
 }
 
-Rational Rational::simplify(Rational& r) {
+Rational Rational::simplify() {
 	
-	int a= r.getNum();
-	int b = r.getDenom();
+	int a= this->getNum();
+	int b = this->getDenom();
 	if (a < b) {
 		for (int i = 2, i < b, i++) {
 			if (a % i == 0 && b % i == 0) {
@@ -74,6 +76,6 @@ Rational Rational::simplify(Rational& r) {
 			}
 		}
 	}
-	Number fraction = new Number(a, b);
+	Number* fraction = new Rational(a, b);
 	return fraction;
 }
