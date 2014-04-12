@@ -1,8 +1,8 @@
 #ifndef RATIONAL_H_
 #define RATIONAL_H_
-#include <Number.h>
+#include "Number.h"
 #include <string>
-
+using namespace std;
 class Rational : public Number {
 public:
 	Rational();
@@ -13,15 +13,15 @@ public:
 	int getNum();
 	int getDenom();
 
-	Number* simplify() = 0;
-	string toString() = 0;
-	string getType() = 0;
-	float getValue() = 0;
+	Number* simplify();
+	string toString();
+	string getType();
+	float getValue();
 
 private:
 	int numerator, denominator;
 	//float value;
-	//string type;
+	string stype;
 };
 
 #endif /* RATIONAL_H_ */
