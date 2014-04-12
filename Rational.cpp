@@ -46,7 +46,7 @@ string Rational:: toString(){
 	return number;
 	
 }
-string Rational:: getType()
+string Rational::getType()
 {
 	return this->sType;
 }
@@ -55,13 +55,12 @@ float Rational::getValue()
 {
 	return this->fValue;
 }
-
-Rational Rational::simplify() {
+Number* Rational::simplify() {
 	
 	int a= this->getNum();
 	int b = this->getDenom();
 	if (a < b) {
-		for (int i = 2, i < b, i++) {
+		for (int i = 2; i < b; i++) {
 			if (a % i == 0 && b % i == 0) {
 				a /= i;
 				b /= i;
@@ -69,7 +68,7 @@ Rational Rational::simplify() {
 		}
 	}
 	else {
-		for (int i = 2, i < a, i++) {
+		for (int i = 2; i < a; i++) {
 			if (b % i == 0 && a % i == 0) {
 				a /= i;
 				b /= i;
