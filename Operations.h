@@ -1,6 +1,8 @@
 #ifndef OPERATIONS_H_
 #define OPERATIONS_H_
-#include "Number.h"
+#include "src\Number.h"
+
+
 class Operations {
 public:
 	Operations();
@@ -10,8 +12,8 @@ public:
 	Number* multiply(Number* a, Number* b);
 	Number* divide(Number* a, Number* b);
 	Number* exponentiate(Number* a, Number* b);
-	Number* logbase(Number* a, Number* b);
-	Number* nthroot(Number* a, Number* b);
+	//Number* logbase(Number* a, Number* b);
+	//Number* nthroot(Number* a, Number* b);
 	Number* simplifyAns(Number* a);
 	Number* toRational(double a);
 private:
