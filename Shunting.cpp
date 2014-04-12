@@ -219,7 +219,7 @@ Number* Shunting:: evaluate(string input)
 }
 
 Number* Shunting:: toNumber(string str){
-	if(str.charAt(0) == 'l'  || str.charAt(0) == 'e' || str.charAt(0) == 'p' str.charAt(0) == 's')
+	if(str.at(0) == 'l'  || str.at(0) == 'e' || str.at(0) == 'p' str.at(0) == 's')
 	{
 		return new Irrational(str);
 	}
@@ -227,11 +227,11 @@ Number* Shunting:: toNumber(string str){
 	{
 		for(int i = 1; i < str.length(); i++)
 		{
-			if(str.charAt(i) == '/')
+			if(str.at(i) == '/')
 			{
 				return new Rational(atoi(str.substring(i - 1)), atoi(str.substring(i+ 1)));
 			}
-			else if(str.charAt(i) == 'r')
+			else if(str.at(i) == 'r')
 			{
 				return new Irrational(str);
 			}
