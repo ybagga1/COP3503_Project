@@ -9,7 +9,7 @@
 using namespace std;
 int main() {
 	Number* ans;
-	Shunting s = new Shunting();
+	Shunting* s = new Shunting();
 	int computeLoop = 1;
 	int helpLoop = 0;
 	int reviewLoop = 0;
@@ -200,7 +200,7 @@ int main() {
 				 computeInput.at(0) == 's' ) {
 				expressionOld = computeInput;
 				cin.clear();
-				s.evaluate(computeInput);
+				s->evaluate(computeInput);
 				computeInput.clear();
 		}
 		else {
