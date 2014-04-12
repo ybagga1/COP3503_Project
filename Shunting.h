@@ -20,6 +20,7 @@ public:
 	//Calls parseTokens, then convertInput, then behaves like RPNtoDouble
 	//Does this so the main isn't  cluttered like the one we saw
 	Number* evaluate(string input);
+	Number* toNumber(string str);
 private:
 
     typedef map <string, pair<int,int > > operatorMap;
