@@ -216,8 +216,8 @@ Number* Shunting:: evaluate(string input)
 		}
 
     return nums.top();
+	}
 }
-
 Number* Shunting:: toNumber(string str){
 	if(str.at(0) == 'l'  || str.at(0) == 'e' || str.at(0) == 'p' str.at(0) == 's')
 	{
@@ -238,5 +238,4 @@ Number* Shunting:: toNumber(string str){
 		}
 	}
 	return new Rational(atoi(str));
-}
 }
