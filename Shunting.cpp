@@ -182,15 +182,15 @@ Number* Shunting:: evaluate(string input)
 			}
 			else
 			{
-				Number result;
+				Number* result;
 
 				// Token is an operator: pop top two entries
-				const Number n2 = nums.top();
+				const Number* n2 = nums.top();
 				nums.pop();
 
 				if (!nums.empty() )
 				{
-					const Number n1 = nums.top();
+					const Number* n1 = nums.top();
 					nums.pop();
 
 					//Get the result
