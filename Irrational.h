@@ -11,7 +11,7 @@ public:
 	// addition/subtraction/division/multiplication/nthroot/log constructor
 	Irrational(string irr);
 	~Irrational();
-	Number simplify();
+	Number* simplify();
 	string toString();
 	string getType();
 	float getValue();
