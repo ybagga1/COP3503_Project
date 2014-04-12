@@ -1,5 +1,6 @@
 #include "Operations.h"
-#include "Number.h"
+#include "Rational.h"
+#include "Irrational.h"
 #include <cmath>
 using namespace std;
 
