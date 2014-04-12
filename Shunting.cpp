@@ -21,7 +21,7 @@ const operatorMap:: value_type assocs[] =
        operatorMap:: value_type( "^", make_pair<int,int>( 5, 1 ))
        };
 
-// const OperatorMap opmap(assocs, assocs + sizeof(assocs)/sizeof(assocs[0]));
+const operatorMap opmap(assocs, assocs + sizeof(assocs)/sizeof(assocs[0]));
 
 bool Shunting::isParenthesis(const string& str)
 {
@@ -34,7 +34,7 @@ bool Shunting:: isOperator(const string& str)
 }
 bool Shunting::isAssociative(const string& str, int precedence)
 {
-	const pair<int,int> p = operatorMap.find(str)->second;
+	const pair<int,int> p = opmap.find(str)->second;
     if (p.second == 0) {
         return false;
     }
@@ -45,8 +45,8 @@ bool Shunting::isAssociative(const string& str, int precedence)
 }
 
 int Shunting:: comparePrec(const string& firsttoken, const string& secondtoken ) {
- const pair<int,int> p1 = operatorMap.find(firsttoken)->first;
- const pair<int,int> p2 = operatorMap.find(secondtoken)->first;
+ const :: pair<int,int> p1 = opmap.find(firsttoken) -> second;
+ const :: pair<int,int> p2 = opmap.find(secondtoken) -> second;
 
     return p1.first - p2.first;
 }
