@@ -1,11 +1,14 @@
 #include <iostream>
 #include <stdexcept>
-//#include "Operations.h"
-//#include "Shunting.h"
-//#include "Number.h"
+#include "Operations.h"
+#include "Shunting.h"
+#include "Number.h"
+#include "Irrational.h"
+#include "Rational.h"
 
 using namespace std;
 int main() {
+	Shunting s = new Shunting();
 	int computeLoop = 1;
 	int helpLoop = 0;
 	int reviewLoop = 0;
@@ -194,10 +197,10 @@ int main() {
 				 computeInput.at(0) == 'e' ||
 				 computeInput.at(0) == 'l' ||
 				 computeInput.at(0) == 's' ) {
-				 expressionOld = computeInput;
-				 computeInput.clear();
-				 cin.clear();
-					//expression was entered, shunting goes here.
+				expressionOld = computeInput;
+				cin.clear();
+				s.evaluate(computeInput);
+				computeInput.clear();
 		}
 		else {
 			cout << "Invalid expression..." << endl;
