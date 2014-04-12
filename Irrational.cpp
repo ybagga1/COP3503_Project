@@ -25,9 +25,10 @@ Irrational::Irrational(string irr){
 		fValue = 3.14159;
 	}
 	else if(irr.at(0) == 's'){
-		sType = "sqrt";
+		sType = "nrt";
+		n = 2;
 		for(int i = 5; i < irr.length(); i++){
-			sqrtOf += irr.at(i);
+			rootOf += irr.at(i);
 		}
 		//fValue = sqrt (strToD sqrtOf);
 	}
