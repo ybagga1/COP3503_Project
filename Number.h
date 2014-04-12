@@ -1,19 +1,20 @@
 #ifndef NUMBER_H_
 #define NUMBER_H_
+#include <iostream>
 #include <string>
 #include<stdexcept>
-using namespace std;
+
 
 class Number {
 public:
-	virtual Number simplify() = 0;
-	virtual String toString() = 0;
-	virtual string type() = 0;
-	virtual float value() = 0;
+	virtual Number* simplify() = 0;
+	virtual string toString() = 0;
+	virtual string getType();
+	virtual float getValue();
 
 private:
-	string type;
-	float value;
+	string sType;
+	float fValue;
 
 };
 
