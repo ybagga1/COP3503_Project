@@ -132,7 +132,7 @@ int main() {
 						 reviewInput.at(0) == 'F' ||
 						 reviewInput.at(0) == 'f') {
 					cout << "The floating point of the previous answer is:" << endl;
-					// code goes here.
+					cout << ans->getValue() << endl;
 					cout << "Return to computing mode?" << endl;
 					cin >> reviewInput;
 					if (reviewInput.at(0) == 'Y' ||
