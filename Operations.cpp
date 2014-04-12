@@ -1,4 +1,5 @@
 #include "Operations.h"
+#include "Number.h"
 #include <cmath>
 using namespace std;
 
@@ -9,7 +10,7 @@ Operations::~Operations() {
 
 }
 Number * Operations::add(Number * a, Number * b) {
-	if (a.type() == "Rational" && b.type() == "Rational") {
+	if (a.getType() == "Rational" && b.getType() == "Rational") {
 		Rational r1 = a;
 		Rational r2 = b;
 		aNum = r1.getNum();
@@ -20,8 +21,8 @@ Number * Operations::add(Number * a, Number * b) {
 		ansNum = (aNum * bDenom) + (bNum * aDenom);
 		Number * ans = new Rational(ansNum, ansDenom);
 	}
-	else if ((a.type() == "Rational" && b.type() == "Irrational") || (b.type() == "Rational" && a.type() == "Irrational")) {
-		if (a.type() == "Rational") {
+	else if ((a.getType() == "Rational" && b.getType() == "Irrational") || (b.getType() == "Rational" && a.getType() == "Irrational")) {
+		if (a.getType() == "Rational") {
 			aNum = a.getNum();
 			aDenom = a.getDenom();
 		}
@@ -38,7 +39,7 @@ Number * Operations::add(Number * a, Number * b) {
 	return ans;
 }
 Number * Operations::subtract(Number * a, Number * b) {
-	if (a.type() == "Rational" && b.type() == "Rational") {
+	if (a.getType() == "Rational" && b.getType() == "Rational") {
 		Rational r1 = a;
 		Rational r2 = b;
 		aNum = r1.getNum();
@@ -49,8 +50,8 @@ Number * Operations::subtract(Number * a, Number * b) {
 		ansNum = (aNum * bDenom) - (bNum * aDenom);
 		Number * ans = new Rational(ansNum, ansDenom);
 	}
-	else if ((a.type() == "Rational" && b.type() == "Irrational") || (b.type() == "Rational" && a.type() == "Irrational")) {
-		if (a.type() == "Rational") {
+	else if ((a.getType() == "Rational" && b.getType() == "Irrational") || (b.getType() == "Rational" && a.getType() == "Irrational")) {
+		if (a.getType() == "Rational") {
 			aNum = a.getNum();
 			aDenom = a.getDenom();
 		}
@@ -67,7 +68,7 @@ Number * Operations::subtract(Number * a, Number * b) {
 	return ans;
 }
 Number * Operations::multiply(Number * a, Number * b) {
-	if (a.type() == "Rational" && b.type() == "Rational") {
+	if (a.getType() == "Rational" && b.getType() == "Rational") {
 		Rational r1 = a;
 		Rational r2 = b;
 		aNum = r1.getNum();
@@ -78,8 +79,8 @@ Number * Operations::multiply(Number * a, Number * b) {
 		ansNum = aNum * bNum;
 		Number * ans = new Rational(ansNum, ansDenom);
 	}
-	else if ((a.type() == "Rational" && b.type() == "Irrational") || (b.type() == "Rational" && a.type() == "Irrational")) {
-		if (a.type() == "Rational") {
+	else if ((a.getType() == "Rational" && b.getType() == "Irrational") || (b.getType() == "Rational" && a.getType() == "Irrational")) {
+		if (a.getType() == "Rational") {
 			aNum = a.getNum();
 			aDenom = a.getDenom();
 		}
@@ -96,7 +97,7 @@ Number * Operations::multiply(Number * a, Number * b) {
 	return ans;
 }
 Number * Operations::divide(Number * a, Number * b) {
-	if (a.type() == "Rational" && b.type() == "Rational") {
+	if (a.getType() == "Rational" && b.getType() == "Rational") {
 		Rational r1 = a;
 		Rational r2 = b;
 		aNum = r1.getNum();
@@ -107,8 +108,8 @@ Number * Operations::divide(Number * a, Number * b) {
 		ansNum = aNum * bDenom;
 		Number * ans = new Rational(ansNum, ansDenom);
 	}
-	else if ((a.type() == "Rational" && b.type() == "Irrational") || (b.type() == "Rational" && a.type() == "Irrational")) {
-		if (a.type() == "Rational") {
+	else if ((a.getType() == "Rational" && b.getType() == "Irrational") || (b.getType() == "Rational" && a.getType() == "Irrational")) {
+		if (a.getType() == "Rational") {
 			aNum = a.getNum();
 			aDenom = a.getDenom();
 		}
@@ -125,7 +126,7 @@ Number * Operations::divide(Number * a, Number * b) {
 	return ans;
 }
 Number * Operations::exponentiate(Number * a, Number * b) {
-		if (a.type() == "Rational") {
+		if (a.getType() == "Rational") {
 		aNum = a.getNum();
 		aDenom = a.getDenom();
 		bNum = b.getNum();
@@ -148,7 +149,7 @@ Number * Operations::logbase(Number * a, Number * b) {
 Number * Operations::nthroot(Number * a, Number * b)
 	int answer;
 	double a, b, ans;
-	if (a.type() == "Rational") {
+	if (a.getType() == "Rational") {
 		Rational r1 = a;
 		Rational r2 = b;
 		aNum = r1.getNum();
