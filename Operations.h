@@ -1,6 +1,8 @@
 #ifndef OPERATIONS_H_
 #define OPERATIONS_H_
-#include "Number.h"
+#include "src\Number.h"
+
+
 class Operations {
 public:
 	Operations();
