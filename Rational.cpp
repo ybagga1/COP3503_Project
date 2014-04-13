@@ -1,5 +1,6 @@
 #include "Rational.h"
 #include <string>
+#include <sstream>
 using namespace std;
 
 Rational::Rational(int numerator){
@@ -34,19 +35,20 @@ int Rational::getDenom(){
 //if denominator = 1, return the numerator as a string
 //else return "numerator '/' denominator"
 string Rational::toString() {
+	string number;
 	if (this->denominator == 0) {
-		return "Cannot divide by zero."
+		return "Cannot divide by zero.";
 	}
 	else if (this->denominator == 1) {
 		stringstream ss;
 		ss<<this->numerator;
-		string number = ss.str();
+		number = ss.str();
 	}
 	else {
 		stringstream ss, tt;
 		ss<<this->numerator;
 		tt<<this->denominator;
-		string number = ss.str() + "/" + tt.str();
+		number = ss.str() + "/" + tt.str();
 	}
 	return number;
 }
