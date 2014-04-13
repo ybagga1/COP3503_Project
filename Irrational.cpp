@@ -127,6 +127,7 @@ Number* Irrational::simplify(){
 	if(type == "log"){
 
 	}
+	return this;
 }
 int Irrational::getNum() {
 	return 0;
