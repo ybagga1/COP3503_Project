@@ -6,6 +6,8 @@ using namespace std;
 
 class Irrational : public Number {
 public:
+	Irrational();
+	Irrational(float z, string irr);
 	Irrational(string irr);
 	Number* simplify();
 	string toString();
@@ -14,6 +16,7 @@ public:
 	int getNum();
 	int getDenom();
 private:
+	string type;
 	string base;
 	string logOf;
 	string rootOf;
