@@ -2,18 +2,23 @@
 #include <cmath>
 #include <stdlib.h>
 
-
 Irrational::Irrational(){
 }
 
+Irrational::Irrational(float z, string irr){
+	sType = "Irrational";
+	fValue = z;
+	type = irr;
+}
 
 Irrational::Irrational(string irr){
+	sType = "Irrational";
 	if(irr.at(0) == 'e'){
-		sType = "e";
+		type = "e";
 		fValue = 2.71828;
 	}
 	else if(irr.at(0) == 'l'){
-		sType = "log";
+		type = "log";
 		int i;
 		for(i = 4; ':'!= (int)irr.at(i); i++){
 			base += irr.at(i);
@@ -24,19 +29,19 @@ Irrational::Irrational(string irr){
 		//fValue = ((log (a) / (log (atol(base));
 	}
 	else if(irr.at(0) == 'p' || irr.at(0) == 'P'){
-		sType = "pi";
+		type = "pi";
 		fValue = 3.14159;
 	}
 	else if(irr.at(0) == 's'){
-		sType = "nrt";
+		type = "nrt";
 		n = 2;
 		for(int i = 5; i < (int)irr.length(); i++){
 			rootOf += irr.at(i);
 		}
 		//fValue = sqrt (strToD sqrtOf);
 	}
-	else if(irr.at(0) == ('0' || '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '9')){
-		sType = "nrt";
+	else if(irr.at(0) == ('0' || '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '9') ){
+		type = "nrt";
 		int i = 0;
 		for(i = 0; 'r' != irr.at(i); i++){
 			n = irr.at(i);
@@ -57,19 +62,19 @@ string Irrational::getType(){
 
 string Irrational::toString(){
 	string str;
-	if(sType == "e"){
+	if(type == "e"){
 		str = "e";
 		return str;
 	}
-	else if(sType == "pi"){
+	else if(type == "pi"){
 		str = "pi";
 		return str;
 	}
-	else if(sType == "log"){
+	else if(type == "log"){
 		str = "log_" + base + ":" + logOf;
 		return str;
 	}
-	else if(sType == "nrt"){
+	else if(type == "nrt"){
 		if(n == "2"){
 			str = "sqrt:" + rootOf;
 		}
@@ -77,6 +82,9 @@ string Irrational::toString(){
 			str = n + "rt:" + rootOf;
 		}
 		return str;
+	}
+	else if (!type.empty()) {
+		return this->type;
 	}
 	else{
 		return "No toString...error";
