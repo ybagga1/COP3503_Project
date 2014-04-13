@@ -15,6 +15,9 @@ public:
 	float getValue();
 	int getNum();
 	int getDenom();
+	string getType2();
+	string getBase();
+	string getLogOf();
 private:
 	string type;
 	string base;
