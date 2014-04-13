@@ -3,21 +3,21 @@
 using namespace std;
 
 
-Rational:: Rational(){
+Rational::Rational(){
 	numerator = 1;
 	denominator = 1;
 	sType = "Rational";
 	fValue = 1;
 }
 
-Rational:: Rational(int numerator){
+Rational::Rational(int numerator){
 	this->numerator = numerator;
 	this->denominator = 1;
 	sType = "Rational";
 	fValue = numerator;
 }
 
-Rational:: Rational(int numerator, int denominator){
+Rational::Rational(int numerator, int denominator){
 	if(denominator == 0)
 		throw invalid_argument("Cannot divide by zero");
 		
@@ -30,11 +30,11 @@ Rational:: Rational(int numerator, int denominator){
 }
 
 
-int Rational:: getNum(){
+int Rational::getNum(){
 	return this->numerator;
 }
 
-int Rational:: getDenom(){
+int Rational::getDenom(){
 	return this->denominator;
 }
 
