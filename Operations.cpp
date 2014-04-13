@@ -57,7 +57,7 @@ Number * Operations::add(Number * a, Number * b) {
 
 	}
 	else {
-		irrStr  = a->toString();
+		irrStr  = a->toString(); // supposed to be freddys code, but its not
 		irrStr2 = b->toString();
 		irrAns = irrStr + " + " + irrStr2;
 		irrVal = a->getValue();
@@ -220,7 +220,10 @@ Number * Operations::divide(Number * a, Number * b) {
 }
 Number * Operations::exponentiate(Number * a, Number * b) {
 		Number* ans;
-		if (a->getType() == "Rational" && b->getType() == "Rational") {
+		if (b->getValue == 1) {
+			ans = a;
+		}
+		else if (a->getType() == "Rational" && b->getType() == "Rational") {
 			aNum = a->getNum();
 			aDenom = a->getDenom();
 			if (bDenom == 1) {
@@ -250,17 +253,13 @@ Number * Operations::exponentiate(Number * a, Number * b) {
 		}
 	return ans;
 }
-Number * Operations::simplifyAns(Number * a) {
-	Number* ans;
-	return ans;
-}
 Number * Operations::toRational(string a) {
 	Number* ans;
 	for (int i =0; i < a.size(); i++) {
 		if (a.at(i) == "." ) {
 			a.erase(i);
 			int power = a.size() - (i + 1);
-			tenPower = pow (10, power);
+			int tenPower = pow (10, power);
 			char *b=new char[a.size()];
 			b[str.size()]=0;
 			memcpy(b,a.c_str(),a.size());
