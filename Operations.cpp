@@ -2,6 +2,8 @@
 #include "Rational.h"
 #include "Irrational.h"
 #include "Number.h"
+#include <sstream>
+#include <ostream>
 #include <cmath>
 using namespace std;
 
@@ -31,15 +33,37 @@ Number * Operations::add(Number * a, Number * b) {
 		if (a->getType() == "Rational") {
 			aNum = a->getNum();
 			aDenom = a->getDenom();
+			irrStr = b->toString();
+			stringstream ss, tt;
+			ss<<aNum;
+			tt<<aDenom;
+			irrAns = "( " + ss.str() + " + " + tt.str() + irrStr + " )" + " / " + tt.str();
+			irrVal = b->getValue();
+			ansVal = (float) (aNum/aDenom) + irrVal;
+			ans = new Irrational(ansVal, irrAns);
 		}
 		else {
 			bNum = b->getNum();
 			bDenom = b->getDenom();
+			irrStr = a->toString();
+			stringstream ss, tt;
+			ss<<bNum;
+			tt<<bDenom;
+			irrAns = "( " + ss.str() + " + " + tt.str() + irrStr + " )" + " / " + tt.str();
+			irrVal = a->getValue();
+			ansVal = (float) (bNum/bDenom) + irrVal;
+			ans = new Irrational(ansVal, irrAns);
 		}
 
 	}
 	else {
-		//sum two irrational numbers
+		irrStr  = a->toString();
+		irrStr2 = b->toString();
+		irrAns = irrStr + " + " + irrStr2;
+		irrVal = a->getValue();
+		irrVal2 = b->getValue();
+		ansVal = (float) irrVal + irrVal2;
+		ans = new Irrational(ansVal, irrAns);
 	}
 	ans->simplify();
 	return ans;
@@ -57,18 +81,40 @@ Number * Operations::subtract(Number * a, Number * b) {
 	}
 	else if ((a->getType() == "Rational" && b->getType() == "Irrational") || (b->getType() == "Rational" && a->getType() == "Irrational")) {
 		if (a->getType() == "Rational") {
-			aNum = a->getNum();
-			aDenom = a->getDenom();
-		}
-		else {
-			bNum = b->getNum();
-			bDenom = b->getDenom();
-		}
+					aNum = a->getNum();
+					aDenom = a->getDenom();
+					irrStr = b->toString();
+					stringstream ss, tt;
+					ss<<aNum;
+					tt<<aDenom;
+					irrAns = "( " + ss.str() + " - " + tt.str() + irrStr + " )" + " / " + tt.str();
+					irrVal = b->getValue();
+					ansVal = (float) (aNum/aDenom) - irrVal;
+					ans = new Irrational(ansVal, irrAns);
+				}
+				else {
+					bNum = b->getNum();
+					bDenom = b->getDenom();
+					irrStr = a->toString();
+					stringstream ss, tt;
+					ss<<bNum;
+					tt<<bDenom;
+					irrAns = "( " + ss.str() + " - " + tt.str() + irrStr + " )" + " / " + tt.str();
+					irrVal = a->getValue();
+					ansVal = (float) (bNum/bDenom) - irrVal;
+					ans = new Irrational(ansVal, irrAns);
+				}
 
-	}
-	else {
-		//sum two irrational numbers
-	}
+			}
+			else {
+				irrStr  = a->toString();
+				irrStr2 = b->toString();
+				irrAns = irrStr + " - " + irrStr2;
+				irrVal = a->getValue();
+				irrVal2 = b->getValue();
+				ansVal = (float) irrVal - irrVal2;
+				ans = new Irrational(ansVal, irrAns);
+			}
 	ans->simplify();
 	return ans;
 }
@@ -85,18 +131,40 @@ Number * Operations::multiply(Number * a, Number * b) {
 	}
 	else if ((a->getType() == "Rational" && b->getType() == "Irrational") || (b->getType() == "Rational" && a->getType() == "Irrational")) {
 		if (a->getType() == "Rational") {
-			aNum = a->getNum();
-			aDenom = a->getDenom();
-		}
-		else {
-			bNum = b->getNum();
-			bDenom = b->getDenom();
-		}
+					aNum = a->getNum();
+					aDenom = a->getDenom();
+					irrStr = b->toString();
+					stringstream ss, tt;
+					ss<<aNum;
+					tt<<aDenom;
+					irrAns = "( " + ss.str() + " * " + irrStr + " )" + " / " + tt.str();
+					irrVal = b->getValue();
+					ansVal = (float) (aNum/aDenom) * irrVal;
+					ans = new Irrational(ansVal, irrAns);
+				}
+				else {
+					bNum = b->getNum();
+					bDenom = b->getDenom();
+					irrStr = a->toString();
+					stringstream ss, tt;
+					ss<<bNum;
+					tt<<bDenom;
+					irrAns = "( " + ss.str() + " * " + irrStr + " )" + " / " + tt.str();
+					irrVal = a->getValue();
+					ansVal = (float) (bNum/bDenom) * irrVal;
+					ans = new Irrational(ansVal, irrAns);
+				}
 
-	}
-	else {
-		//sum two irrational numbers
-	}
+			}
+			else {
+				irrStr  = a->toString();
+				irrStr2 = b->toString();
+				irrAns = irrStr + " * " + irrStr2;
+				irrVal = a->getValue();
+				irrVal2 = b->getValue();
+				ansVal = (float) irrVal * irrVal2;
+				ans = new Irrational(ansVal, irrAns);
+			}
 	ans->simplify();
 	return ans;
 }
@@ -113,18 +181,40 @@ Number * Operations::divide(Number * a, Number * b) {
 	}
 	else if ((a->getType() == "Rational" && b->getType() == "Irrational") || (b->getType() == "Rational" && a->getType() == "Irrational")) {
 		if (a->getType() == "Rational") {
-			aNum = a->getNum();
-			aDenom = a->getDenom();
-		}
-		else {
-			bNum = b->getNum();
-			bDenom = b->getDenom();
-		}
+					aNum = a->getNum();
+					aDenom = a->getDenom();
+					irrStr = b->toString();
+					stringstream ss, tt;
+					ss<<aNum;
+					tt<<aDenom;
+					irrAns = ss.str() + " / ( " + tt.str() +  " * " + irrStr + " )";
+					irrVal = b->getValue();
+					ansVal = (float) (aNum/aDenom) / irrVal;
+					ans = new Irrational(ansVal, irrAns);
+				}
+				else {
+					bNum = b->getNum();
+					bDenom = b->getDenom();
+					irrStr = a->toString();
+					stringstream ss, tt;
+					ss<<bNum;
+					tt<<bDenom;
+					irrAns = "( " + irrStr + " * " + tt.str() + " ) / " + ss.str();
+					irrVal = a->getValue();
+					ansVal = (float) (bNum/bDenom) + irrVal;
+					ans = new Irrational(ansVal, irrAns);
+				}
 
-	}
-	else {
-		//sum two irrational numbers
-	}
+			}
+			else {
+				irrStr  = a->toString();
+				irrStr2 = b->toString();
+				irrAns = irrStr + " / " + irrStr2;
+				irrVal = a->getValue();
+				irrVal2 = b->getValue();
+				ansVal = (float) irrVal / irrVal2;
+				ans = new Irrational(ansVal, irrAns);
+			}
 	ans->simplify();
 	return ans;
 }
@@ -133,17 +223,31 @@ Number * Operations::exponentiate(Number * a, Number * b) {
 		if (a->getType() == "Rational") {
 			aNum = a->getNum();
 			aDenom = a->getDenom();
-		if (bDenom == 1) {
-			for (int i = 0; i < bNum; i++) {
-				aNum   *= aNum;
-				aDenom *= aDenom;
+			if (bDenom == 1) {
+				for (int i = 0; i < bNum; i++) {
+					aNum   *= aNum;
+					aDenom *= aDenom;
+				}
+				ans = new Rational(aNum, aDenom);
 			}
-			ans = new Rational(aNum, aDenom);
+			else {
+				aNum = a->getNum();
+				aDenom = a->getDenom();
+				bNum = b->getNum();
+				bDenom = b->getDenom();
+				Number* tempB = new Rational(bNum);
+				Number* tempAns = exponentiate(a,tempB);
+				stringstream ss;
+				ss<<bDenom;
+				string ansStr = ss.str() + "rt:" + tempAns->toString();
+				ans = new Irrational(ansStr);
+			}
 		}
-		else {
-			// denominator of exponent not 1;
+		else { //a is not rational
+			string str = a->toString() + "^" + b->toString();
+			float v = pow (a->getValue(), b->getValue());
+			ans = new Irrational(v, str);
 		}
-	}
 	return ans;
 }
 Number * Operations::simplifyAns(Number * a) {
