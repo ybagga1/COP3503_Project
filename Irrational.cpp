@@ -1,10 +1,11 @@
-
 #include "Irrational.h"
 #include <cmath>
 #include <stdlib.h>
 
+
 Irrational::Irrational(){
 }
+
 
 Irrational::Irrational(string irr){
 	if(irr.at(0) == 'e'){
@@ -14,10 +15,10 @@ Irrational::Irrational(string irr){
 	else if(irr.at(0) == 'l'){
 		sType = "log";
 		int i;
-		for(i = 4; ':'!=irr.at(i); i++){
+		for(i = 4; ':'!= (int)irr.at(i); i++){
 			base += irr.at(i);
 		}
-		for(i += 1; i<irr.length(); i++){
+		for(i += 1; i< (int)irr.length(); i++){
 			logOf = irr.at(i);
 		}
 		//fValue = ((log (a) / (log (atol(base));
@@ -29,7 +30,7 @@ Irrational::Irrational(string irr){
 	else if(irr.at(0) == 's'){
 		sType = "nrt";
 		n = 2;
-		for(int i = 5; i < irr.length(); i++){
+		for(int i = 5; i < (int)irr.length(); i++){
 			rootOf += irr.at(i);
 		}
 		//fValue = sqrt (strToD sqrtOf);
@@ -40,7 +41,7 @@ Irrational::Irrational(string irr){
 		for(i = 0; 'r' != irr.at(i); i++){
 			n = irr.at(i);
 		}
-		for(i += 3; i < irr.length(); i++){
+		for(i += 3; i < (int)irr.length(); i++){
 			rootOf += irr.at(i);
 		}
 		//fValue = pow (strToD rootOf, (1/n));
@@ -87,5 +88,13 @@ float Irrational::getValue(){
 }
 
 Number* Irrational::simplify(){
-
+	string str;
+	Number* ans = new Irrational(str);
+	return ans;
+}
+int Irrational::getNum() {
+	return 0;
+}
+int Irrational::getDenom() {
+	return 0;
 }
