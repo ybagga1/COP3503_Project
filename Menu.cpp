@@ -16,7 +16,7 @@ int main() {
 	string computeInput, helpInput, reviewInput, expressionOld;
 	cout << "------------------------------------------------------------------------------" << endl;
 	cout << "Expression Calculator Project"													 << endl;
-	cout << "By: Yayati Bagga, Nick Diez, Kayleigh Dvorak, Mathew Giaramita, Freddy Jimenez" << endl;
+	cout << "By: Yayati Bagga, Nick Diez, Kayleigh Dvorak, Mathew Giaramita"		 << endl;
 	cout << "!!! WARNING !!! Include parenthesis outside of negative numbers when entering"	 << endl:
 	cout << "Example: 5 * (-12)"
 	cout << "!!! WARNING !!! Include a space between each operation of the following type:"  << endl;
@@ -82,9 +82,9 @@ int main() {
 					cout << "------------------------------------------------------------------------------" << endl;
 					cout << "Nick Diez: 		Menu and Operations" 										 << endl;
 					cout << "Mathew Giaramita: 	Operations and Irrational" 									 << endl;
-					cout << "Kayleigh Dvorak: 	Shunting Yard Algorithm and Rational" 						 << endl;
-					cout << "Freddy Jimenez:  	toString stuff" 											 << endl;
-					cout << "Yayati Bagga: 		Shunting help" 												 << endl;
+					cout << "Kayleigh Dvorak: 	Shunting and Rational" 						 << endl;
+					cout << "Freddy Jimenez:  	Nothing" 											 << endl;
+					cout << "Yayati Bagga: 		Shunting" 												 << endl;
 					cout << "------------------------------------------------------------------------------" << endl;
 				}
 				else if (helpInput.at(0) == '4' ||
