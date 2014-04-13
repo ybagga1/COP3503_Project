@@ -5,11 +5,9 @@
 using namespace std;
 class Rational : public Number {
 public:
-	Rational();
 	Rational(int numerator,int denominator);
 	// integer constructor
 	Rational(int numerator);
-	virtual ~Rational();
 	int getNum();
 	int getDenom();
 
