@@ -52,53 +52,77 @@ int Shunting:: comparePrec(const string& firsttoken, const string& secondtoken )
 }
 
 vector<string> Shunting::parseTokens(const string& input) {
+	////cout << "ParseTokens(" << input << ")" << endl;
     vector<string> tokens;
     string str = "";
-    for ( int i = 0; i < (int) input.length(); ++i)   {
+    for ( int i = 0; i <= (int) input.length(); ++i)   {
         const string token(1, input [i]);
 
         if (isParenthesis(token) || isOperator(token))
         {
+        	//cout << "Parenthesis? " << isParenthesis(token) << " isOperator(token)" << isOperator(token) << endl;
             if (!str.empty())
             {
+            	//cout << "Parenthesis? " << isParenthesis(token) << " isOperator(token)" << isOperator(token) << endl;
+            	//cout << "!str.empty() tokens.push_back(" << str << ")" << endl;
                  tokens.push_back(str ) ;
             }
             str = "";
+            //cout << "tokens.push_back(" << token << ")" << endl;
             tokens.push_back(token);
         }
         else {
             if (!token.empty() && token != " ")
             {
+            	//cout << "str.append(" << token << ")" << endl;
                 str.append( token );
             }
             else
             {
                 if (str != "")
                 {
+                	//cout << "tokens.push_back(" << str << ")" << endl;
                     tokens.push_back(str);
                     str = "";
+                    //cout << "str = " << str << endl;
                 }
-                }
-             }
+			}
+            if(i == input.length() && str != "")
+            	tokens.push_back(str);
+		 }
     }
+
+
+    //cout << "tokens= ";
+    for(int i = 0; i < tokens.size(); i++)
+    {
+    	//cout << tokens[i] << ", ";
+    }
+    //cout << "\nstr= " << str;
     return tokens;
     }
 
 bool Shunting::convertInput(const vector<string>& input, const int& size, vector<string>& outputVec) {
-    bool success = true;
+    //cout << "ConvertInput size= " << size << endl;
+	bool success = true;
     list <string> output;
     stack<string> opstack;
      for ( int i = 0; i < size; i++ )
     {
         const string token = input[ i ];
+        if(token == " ")
+        	break;
+        //cout << "token = " << token << endl;
         if ( isOperator(token)) {
             const string operator1 = token;
+            //cout << "operator1 = " << token << endl;
              if (!opstack.empty())
             {
                 string operator2 = opstack.top();
+                //cout << "operator2 = " << token << endl;
                 while (isOperator( operator2 ) &&
                         ((isAssociative(operator1, 1) &&  comparePrec(operator1, operator2) == 0 ) ||
-                        ( comparePrec( operator1, operator2 ) < 0 )))
+                        ( comparePrec( operator1, operator2 ) <= 0 )))
                 {
                     opstack.pop();
                     output.push_back(operator2);
@@ -141,7 +165,7 @@ bool Shunting::convertInput(const vector<string>& input, const int& size, vector
     while (!opstack.empty())
     {
         const string TokenStack = opstack.top();
-
+        //cout << "TokenStack = " << TokenStack;
         if ( isParenthesis(TokenStack ))
         {
             return false;
@@ -161,19 +185,27 @@ bool Shunting::convertInput(const vector<string>& input, const int& size, vector
 //Does this so the main isn't  cluttered like the one we saw
 Number* Shunting:: evaluate(string input)
 {
+	//cout << "Evaluate(" << input << ")" << endl;
 	Operations* o = new Operations();
 	vector<string> tokens = parseTokens(input);
 	vector<string> converted;
 	stack<Number*> nums;
 	if(convertInput(tokens, tokens.size(), converted))
 	{
-		for ( int i = 0; i < (int) tokens.size(); ++i )
+		cout << "converted= ";
+		for(int i = 0; i < converted.size(); i++)
+		{
+			cout << converted[i] << ", ";
+		}
+		for ( int i = 0; i < (int) tokens.size(); i++ )
 		{
 			// If the token is a value push it onto the stack
 			if ( !isOperator(tokens[i]) )
 			{
+				cout << "!Op tokens[i]= " << tokens[i] << endl;
 				try
 				{
+					cout << "nums.push " << tokens[i] << endl;
 					nums.push(toNumber(tokens[i]));
 				}
 				catch(int e)
@@ -183,24 +215,35 @@ Number* Shunting:: evaluate(string input)
 			}
 			else
 			{
+				cout << "Op tokens[i]= " << tokens[i] << endl;
 				Number* result;
 
 				// Token is an operator: pop top two entries
 				Number* n2 = nums.top();
 				nums.pop();
-
+				cout << "n2 = " << n2->toString();
+				cout << "nums.empty()"<< nums.empty() << endl;
 				if (!nums.empty() )
 				{
 					Number* n1 = nums.top();
 					nums.pop();
 
+					cout << ", n1 = " << n1->toString();
 					//Get the result
-					result = tokens[i] == "+" ? o->add(n1, n2) :
-							 tokens[i] == "-" ? o->subtract(n1, n2) :
-							 tokens[i] == "/" ? o->divide(n1, n2) :
-							 tokens[i] == "*" ? o->multiply(n1, n2) :
-							 tokens[i] == "^" ? o->exponentiate(n1, n2) :
-							 throw invalid_argument("Invalid expression input, please adhere to input standards.");
+					if(tokens[i] == "+") {
+						result = o->add(n1, n2);
+						cout << "result= " << result->toString() << endl;
+					}
+					else if(tokens[i] == "-")
+						result = o->subtract(n1, n2);
+					else if(tokens[i] == "*")
+						result = o->multiply(n1, n2);
+					else if(tokens[i] == "/")
+						result = o->divide(n1, n2);
+					else if(tokens[i] == "^")
+						result = o->exponentiate(n1, n2);
+					else
+						throw invalid_argument("Invalid expression input, please adhere to input standards.");
 				}
 				else
 				{
@@ -210,13 +253,59 @@ Number* Shunting:: evaluate(string input)
 						result = n2;
 				}
 
-
 				// Push result onto stack
 				nums.push(result);
+				cout << "pushed result = " << result->toString() << endl;
 			}
 		}
 	}
-    return nums.top();
+
+	else
+	{
+		throw invalid_argument("Mismatched parenthesis");
+	}
+
+	string token = tokens[tokens.size() - 1];
+	if(isOperator(token) )
+	{
+		Number* result;
+		Number* n2 = nums.top();
+		nums.pop();
+		cout << "n2 = " << n2->toString();
+		cout << "nums.empty()"<< nums.empty() << endl;
+		if (!nums.empty() )
+		{
+			Number* n1 = nums.top();
+			nums.pop();
+
+			cout << ", n1 = " << n1->toString();
+			//Get the result
+			if(token == "+") {
+				result = o->add(n1, n2);
+				cout << "result= " << result->toString() << endl;
+			}
+			else if(token == "-")
+				result = o->subtract(n1, n2);
+			else if(token == "*")
+				result = o->multiply(n1, n2);
+			else if(token == "/")
+				result = o->divide(n1, n2);
+			else if(token == "^")
+				result = o->exponentiate(n1, n2);
+			else
+				throw invalid_argument("Invalid expression input, please adhere to input standards.");
+		}
+		else
+		{
+			if ( token == "-" )
+				result = o->multiply(n2, new Rational(-1));
+			else
+				result = n2;
+		}
+	}
+
+	cout << "nums.top() = " << nums.top()->toString() << endl;
+	return nums.top();
 }
 Number* Shunting:: toNumber(string str){
 	Number* ans;
@@ -250,5 +339,6 @@ Number* Shunting:: toNumber(string str){
 	c[str.size()]=0;
 	memcpy(c,str.c_str(),str.size());
 	ans = new Rational(atoi(c));
+	//cout << "created number = " << ans->toString() << endl;
 	return ans;
 }
