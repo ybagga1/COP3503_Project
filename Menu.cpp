@@ -14,15 +14,16 @@ int main() {
 	int helpLoop = 0;
 	int reviewLoop = 0;
 	string computeInput, helpInput, reviewInput, expressionOld;
+	cout << "------------------------------------------------------------------------------" << endl;
+	cout << "Expression Calculator Project"													 << endl;
+	cout << "By: Yayati Bagga, Nick Diez, Kayleigh Dvorak, Mathew Giaramita, Freddy Jimenez" << endl;
+	cout << "!!! WARNING !!! Include a space between each operation of the following type:"  << endl;
+	cout << "+, -, *, /, ^." 																 << endl;
+	cout << "------------------------------------------------------------------------------" << endl;
+	cout << endl;
 	while (computeLoop == 1) {
-		cout << "------------------------------------------------------------------------------" << endl;
-		cout << "Expression Calculator Project"													 << endl;
-		cout << "By: Yayati Bagga, Nick Diez, Kayleigh Dvorak, Mathew Giaramita, Freddy Jimenez" << endl;
-		cout << endl;
 		cout << "Enter an expression to compute, menu commands are: " 							 << endl;
 		cout << "Help, Review, Quit" 															 << endl;
-		cout << "!!! WARNING !!! Include a space between each operation of the following type:"  << endl;
-		cout << "+, -, *, /, ^." 																 << endl;
 		cout << endl;
 		cout << "Enter an expression or an option from the menu:" 		<< endl;
 		cin.clear();
