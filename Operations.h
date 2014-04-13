@@ -14,7 +14,7 @@ public:
 	Number* divide(Number* a, Number* b);
 	Number* exponentiate(Number* a, Number* b);
 	Number* simplifyAns(Number* a);
-	Number* toRational(double a);
+	Number* toRational(string a);
 private:
 	int aNum, aDenom, bNum, bDenom, ansNum, ansDenom;
 	float irrVal, irrVal2, ansVal;
@@ -22,4 +22,3 @@ private:
 };
 
 #endif /* OPERATIONS_H_ */
-
