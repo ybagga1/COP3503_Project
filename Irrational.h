@@ -8,10 +8,13 @@ class Irrational : public Number {
 public:
 	Irrational();
 	Irrational(string irr);
+	virtual ~Irrational();
 	Number* simplify();
 	string toString();
 	string getType();
 	float getValue();
+	int getNum();
+	int getDenom();
 private:
 	string base;
 	string logOf;
