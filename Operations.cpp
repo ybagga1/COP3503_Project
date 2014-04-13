@@ -254,7 +254,25 @@ Number * Operations::simplifyAns(Number * a) {
 	Number* ans;
 	return ans;
 }
-Number * Operations::toRational(double a) {
+Number * Operations::toRational(string a) {
 	Number* ans;
+	for (int i =0; i < a.size(); i++) {
+		if (a.at(i) == "." ) {
+			a.erase(i);
+			int power = a.size() - (i + 1);
+			tenPower = pow (10, power);
+			char *b=new char[a.size()];
+			b[str.size()]=0;
+			memcpy(b,a.c_str(),a.size());
+			ans = new Rational(atoi(b), tenPower);
+			break;
+		}
+		else {
+			char* b = new char[a.size()];
+			b[a.size()]= 0;
+			memcpy(b,a.c_str(),a.size());
+			ans = new Rational (atoi(b));
+		}
+	}
 	return ans;
 }
