@@ -17,6 +17,8 @@ int main() {
 	cout << "------------------------------------------------------------------------------" << endl;
 	cout << "Expression Calculator Project"													 << endl;
 	cout << "By: Yayati Bagga, Nick Diez, Kayleigh Dvorak, Mathew Giaramita, Freddy Jimenez" << endl;
+	cout << "!!! WARNING !!! Include parenthesis outside of negative numbers when entering"	 << endl:
+	cout << "Example: 5 * (-12)"
 	cout << "!!! WARNING !!! Include a space between each operation of the following type:"  << endl;
 	cout << "+, -, *, /, ^." 																 << endl;
 	cout << "------------------------------------------------------------------------------" << endl;
@@ -37,7 +39,7 @@ int main() {
 			cout << "Entering help menu..." << endl;
 			helpLoop = 1;
 			while (helpLoop == 1) {
-				cout << string(5, '\n');
+				cout << string(4, '\n');
 				cout << "------------------------------------------------------------------------------" << endl;
 				cout << "1. Formatting Expressions"														 << endl;
 				cout << "2. Review Mode Help"															 << endl;
@@ -60,6 +62,7 @@ int main() {
 					cout << "Nth Root: \'xrt:y' where x and y are either rational or irrational numbers." 	 << endl;
 					cout << "Square Root: \'sqrt:x\' where x is either a rational or irrational number."     << endl;
 					cout << "Log Base: \'log_y:x\' where x and y are either rational or irrational numbers." << endl;
+					cout << "Negative Numbers: \'(-x)\' Add parenthesis outside of number." << endl;
 					cout << "Valid irrational numbers are pi and e."										 << endl;
 					cout << "------------------------------------------------------------------------------" << endl;
 				}
