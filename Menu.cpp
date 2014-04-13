@@ -205,7 +205,7 @@ int main() {
 				expressionOld = computeInput;
 				cin.clear();
 				ans = s->evaluate(computeInput);
-				cout << "The result of your expression is:" << ans->toString() << endl;
+				cout << "The result of your expression is: " << ans->toString() << endl;
 				computeInput.clear();
 		}
 		else {
