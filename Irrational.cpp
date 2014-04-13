@@ -87,6 +87,15 @@ Irrational::Irrational(string irr){ //the constructor that is given a number and
 string Irrational::getType(){
 	return sType;             //is used to tell other classes that the number is irrational
 }
+string Irrational::getType2(){
+	return type;
+}
+string Irrational::getBase(){
+	return base;
+}
+string Irrational::getLogOf(){
+	return logOf;
+}
 
 string Irrational::toString(){  //prints the string of the irrational
 	string str;
@@ -124,9 +133,6 @@ float Irrational::getValue(){
 }
 
 Number* Irrational::simplify(){
-	if(type == "log"){
-
-	}
 	return this;
 }
 int Irrational::getNum() {
