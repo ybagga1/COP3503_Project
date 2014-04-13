@@ -16,9 +16,9 @@ int main() {
 	string computeInput, helpInput, reviewInput, expressionOld;
 	cout << "------------------------------------------------------------------------------" << endl;
 	cout << "Expression Calculator Project"													 << endl;
-	cout << "By: Yayati Bagga, Nick Diez, Kayleigh Dvorak, Mathew Giaramita"		 << endl;
-	cout << "!!! WARNING !!! Include parenthesis outside of negative numbers when entering"	 << endl:
-	cout << "Example: 5 * (-12)"
+	cout << "By: Yayati Bagga, Nick Diez, Kayleigh Dvorak, Mathew Giaramita"		 		 << endl;
+	cout << "!!! WARNING !!! Include parenthesis outside of negative numbers when entering"	 << endl;
+	cout << "Example: 5 * (-12)"															 << endl;
 	cout << "!!! WARNING !!! Include a space between each operation of the following type:"  << endl;
 	cout << "+, -, *, /, ^." 																 << endl;
 	cout << "------------------------------------------------------------------------------" << endl;
