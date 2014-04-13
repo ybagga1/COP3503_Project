@@ -9,7 +9,7 @@
 using namespace std;
 
 Shunting::Shunting() {
-typedef map <string, pair< int,int> > operatorMap;
+//typedef map <string, pair< int,int> > operatorMap;
 
 }
 typedef map <string, pair< int,int> > operatorMap;
@@ -161,11 +161,12 @@ bool Shunting::convertInput(const vector<string>& input, const int& size, vector
 //Does this so the main isn't  cluttered like the one we saw
 Number* Shunting:: evaluate(string input)
 {
+	Operations* o = new Operations();
 	vector<string> tokens = parseTokens(input);
 	vector<string> converted;
+	stack<Number*> nums;
 	if(convertInput(tokens, tokens.size(), converted))
 	{
-		stack<string> nums;
 		for ( int i = 0; i < (int) tokens.size(); ++i )
 		{
 			// If the token is a value push it onto the stack
@@ -175,7 +176,7 @@ Number* Shunting:: evaluate(string input)
 				{
 					nums.push(toNumber(tokens[i]));
 				}
-				catch
+				catch(int e)
 				{
 					throw invalid_argument("Invalid expression input, please adhere to input standards.");
 				}
@@ -185,26 +186,26 @@ Number* Shunting:: evaluate(string input)
 				Number* result;
 
 				// Token is an operator: pop top two entries
-				const Number* n2 = nums.top();
+				Number* n2 = nums.top();
 				nums.pop();
 
 				if (!nums.empty() )
 				{
-					const Number* n1 = nums.top();
+					Number* n1 = nums.top();
 					nums.pop();
 
 					//Get the result
-					result = tokens[i] == "+" ? add(n1, n2) :
-							 tokens[i] == "-" ? subtract(n1, n2) :
-							 tokens[i] == "/" ? diviide(n1, n2) :
-							 tokens[i] == "*" ? multiply(n1, n2) :
-							 tokens[i] == "^" ? exponentiate(n1, n2) :
+					result = tokens[i] == "+" ? o->add(n1, n2) :
+							 tokens[i] == "-" ? o->subtract(n1, n2) :
+							 tokens[i] == "/" ? o->divide(n1, n2) :
+							 tokens[i] == "*" ? o->multiply(n1, n2) :
+							 tokens[i] == "^" ? o->exponentiate(n1, n2) :
 							 throw invalid_argument("Invalid expression input, please adhere to input standards.");
 				}
 				else
 				{
 					if ( tokens[i] == "-" )
-						result = multiply(n2, new Rational(-1));
+						result = o->multiply(n2, new Rational(-1));
 					else
 						result = n2;
 				}
@@ -214,28 +215,40 @@ Number* Shunting:: evaluate(string input)
 				nums.push(result);
 			}
 		}
-
-    return nums.top();
 	}
+    return nums.top();
 }
 Number* Shunting:: toNumber(string str){
-	if(str.at(0) == 'l'  || str.at(0) == 'e' || str.at(0) == 'p' str.at(0) == 's')
+	Number* ans;
+	if((str.at(0) == 'l')  || (str.at(0) == 'e') || (str.at(0) == 'p') || (str.at(0) == 's'))
 	{
-		return new Irrational(str);
+		ans = new Irrational(str);
 	}
 	else
 	{
-		for(int i = 1; i < str.length(); i++)
+		for(int i = 1; i < (int)str.size(); i++)
 		{
 			if(str.at(i) == '/')
 			{
-				return new Rational(atoi(str.substring(i - 1)), atoi(str.substring(i+ 1)));
+				char *a=new char[str.size()+1];
+				a[str.substr(i-1).size()]=0;
+				memcpy(a,str.c_str(),str.substr(i-1).size());
+
+				char *b=new char[str.size()+1];
+				b[str.substr(i+1).size()]=0;
+				memcpy(b,str.c_str(),str.substr(i+1).size());
+				ans = new Rational(atoi(a), atoi(b));
 			}
 			else if(str.at(i) == 'r')
 			{
-				return new Irrational(str);
+				ans = new Irrational(str);
 			}
 		}
 	}
-	return new Rational(atoi(str));
+
+	char *c=new char[str.size()+1];
+	c[str.size()]=0;
+	memcpy(c,str.c_str(),str.size());
+	ans = new Rational(atoi(c));
+	return ans;
 }
