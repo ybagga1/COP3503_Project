@@ -62,9 +62,8 @@ Irrational::Irrational(string irr){ //the constructor that is given a number and
 		for(int i = 5; i < (int)irr.length(); i++){
 			rootOf += irr.at(i);
 		}
-		double a = atof(n.c_str());
 		double b = atof(rootOf.c_str());
-		fValue = pow (b, (1/a));
+		fValue = sqrt (b);
 	}
 	else if( irr.at(0) == '0' || irr.at(0) == '1' || irr.at(0) == '2' || irr.at(0) == '3' || irr.at(0) == '4' || irr.at(0) == '5' || irr.at(0) == '6' || irr.at(0) == '7' || irr.at(0) == '8' || irr.at(0) == '9'){
 		type = "nrt";
@@ -88,13 +87,13 @@ string Irrational::getType(){
 	return sType;             //is used to tell other classes that the number is irrational
 }
 string Irrational::getType2(){
-	return type;
+	return type;              //gives the specific type of irrational
 }
 string Irrational::getBase(){
-	return base;
+	return base;              //returns base of a log irrational
 }
 string Irrational::getLogOf(){
-	return logOf;
+	return logOf;             //returns what the log is being taken of
 }
 
 string Irrational::toString(){  //prints the string of the irrational
