@@ -30,6 +30,22 @@ Irrational::Irrational(string irr){ //the constructor that is given a number and
 		if(logOf == base){
 			fValue = 1;
 		}
+		else if(base == "e"){
+			double a = atof(logOf.c_str());
+			fValue = log (a) / log (2.71828);
+		}
+		else if(logOf == "e"){
+			double a = atof(base.c_str());
+			fValue = log (2.71828) / log (a);
+		}
+		else if(base == "pi"){
+			double a = atof(logOf.c_str());
+			fValue = log (a) / log (3.14159);
+		}
+		else if(logOf == "pi"){
+			double a = atof(base.c_str());
+			fValue = log (3.14159) / log (a);
+		}
 		else{
 			double a = atof(logOf.c_str());
 			double b = atof(base.c_str());
