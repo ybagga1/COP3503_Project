@@ -13,7 +13,6 @@ public:
 	Number* multiply(Number* a, Number* b);
 	Number* divide(Number* a, Number* b);
 	Number* exponentiate(Number* a, Number* b);
-	Number* simplifyAns(Number* a);
 	Number* toRational(string a);
 private:
 	int aNum, aDenom, bNum, bDenom, ansNum, ansDenom;
