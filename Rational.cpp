@@ -39,6 +39,12 @@ string Rational::toString() {
 	if (this->denominator == 0) {
 		return "Cannot divide by zero.";
 	}
+	else if (this->numerator == 0) {
+		return "0";
+	}
+	else if (this->numerator == this->denominator) {
+		return "1";
+	}
 	else if (this->denominator == 1) {
 		stringstream ss;
 		ss<<this->numerator;
