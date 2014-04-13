@@ -2,8 +2,8 @@
 #define NUMBER_H_
 #include <iostream>
 #include <string>
-#include<stdexcept>
-
+#include <stdexcept>
+using namespace std;
 
 class Number {
 public:
@@ -11,8 +11,10 @@ public:
 	virtual string toString() = 0;
 	virtual string getType();
 	virtual float getValue();
+	virtual int getNum();
+	virtual int getDenom();
 
-private:
+protected:
 	string sType;
 	float fValue;
 
