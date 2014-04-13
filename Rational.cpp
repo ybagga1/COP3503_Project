@@ -62,24 +62,37 @@ float Rational::getValue()
 	return this->fValue;
 }
 Number* Rational::simplify() {
-	
+	bool simplified = true;
 	int a= this->getNum();
 	int b = this->getDenom();
-	if (a < b) {
-		for (int i = 2; i < b; i++) {
-			if (a % i == 0 && b % i == 0) {
-				a /= i;
-				b /= i;
+	while (simplified) {
+		if (a < b) {
+			for (int i = 2; i < b; i++) {
+				if (a % i == 0 && b % i == 0) {
+					a /= i;
+					b /= i;
+					simplified = true;
+					break;
+				}
+				else {
+					simplified = false;
+				}
 			}
 		}
-	}
-	else {
-		for (int i = 2; i < a; i++) {
-			if (b % i == 0 && a % i == 0) {
-				a /= i;
-				b /= i;
+		else {
+			for (int i = 2; i < a; i++) {
+				if (b % i == 0 && a % i == 0) {
+					a /= i;
+					b /= i;
+					simplified = true;
+					break;
+				}
+				else {
+					simplified = false;
+				}
 			}
 		}
+		
 	}
 	Number* fraction = new Rational(a, b);
 	return fraction;
