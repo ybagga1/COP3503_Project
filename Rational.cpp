@@ -2,14 +2,6 @@
 #include <string>
 using namespace std;
 
-
-Rational::Rational(){
-	numerator = 1;
-	denominator = 1;
-	sType = "Rational";
-	fValue = 1;
-}
-
 Rational::Rational(int numerator){
 	this->numerator = numerator;
 	this->denominator = 1;
@@ -41,10 +33,22 @@ int Rational::getDenom(){
 
 //if denominator = 1, return the numerator as a string
 //else return "numerator '/' denominator"
-string Rational:: toString(){
-	string number = "";
+string Rational::toString() {
+	if (this->denominator == 0) {
+		return "Cannot divide by zero."
+	}
+	else if (this->denominator == 1) {
+		stringstream ss;
+		ss<<this->numerator;
+		string number = ss.str();
+	}
+	else {
+		stringstream ss, tt;
+		ss<<this->numerator;
+		tt<<this->denominator;
+		string number = ss.str() + "/" + tt.str();
+	}
 	return number;
-	
 }
 string Rational::getType()
 {
