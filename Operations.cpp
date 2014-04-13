@@ -220,7 +220,7 @@ Number * Operations::divide(Number * a, Number * b) {
 }
 Number * Operations::exponentiate(Number * a, Number * b) {
 		Number* ans;
-		if (a->getType() == "Rational") {
+		if (a->getType() == "Rational" && b->getType() == "Rational") {
 			aNum = a->getNum();
 			aDenom = a->getDenom();
 			if (bDenom == 1) {
