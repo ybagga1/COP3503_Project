@@ -79,7 +79,7 @@ Number* Rational::simplify() {
 				}
 			}
 		}
-		else {
+		else if (a > b) {
 			for (int i = 2; i < a; i++) {
 				if (b % i == 0 && a % i == 0) {
 					a /= i;
@@ -91,6 +91,11 @@ Number* Rational::simplify() {
 					simplified = false;
 				}
 			}
+		}
+		else {
+			a = 1;
+			b = 1;
+			simplified = false;
 		}
 		
 	}
