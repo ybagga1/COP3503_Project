@@ -6,9 +6,7 @@ using namespace std;
 
 class Irrational : public Number {
 public:
-	Irrational();
 	Irrational(string irr);
-	virtual ~Irrational();
 	Number* simplify();
 	string toString();
 	string getType();
