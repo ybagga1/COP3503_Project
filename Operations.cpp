@@ -263,8 +263,8 @@ Number * Operations::exponentiate(Number * a, Number * b) {
 			aDenom = a->getDenom();
 			bDenom = b->getDenom();
 			bNum = b->getNum();
-			tempNum = aNum;
-			tempDenom = aDenom;
+			int tempNum = aNum;
+			int tempDenom = aDenom;
 			if (bDenom == 1) {
 				for (int i = 0; i < bNum; i++) {
 					aNum   *= tempNum;
