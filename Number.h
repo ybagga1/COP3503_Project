@@ -13,6 +13,9 @@ public:
 	virtual float getValue() = 0;
 	virtual int getNum() = 0;
 	virtual int getDenom() = 0;
+	virtual string getBase() = 0;
+	virtual string getLogOf() = 0;
+	virtual string getType2() = 0;
 
 protected:
 	string sType;
