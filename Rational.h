@@ -15,6 +15,9 @@ public:
 	string toString();
 	string getType();
 	float getValue();
+	string getType2();
+	string getBase();
+	string getLogOf();
 
 private:
 	int numerator, denominator;
