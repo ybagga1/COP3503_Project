@@ -22,7 +22,7 @@ public:
 	//Has to return a number because of the ans keyword
 	//Calls parseTokens, then convertInput, then behaves like RPNtoDouble
 	//Does this so the main isn't  cluttered like the one we saw
-	Number* evaluate(string input);
+	Number* evaluate(string input, Number* ansOld);
 	Number* toNumber(string str);
 private:
 
