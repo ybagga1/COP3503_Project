@@ -29,6 +29,7 @@ Irrational::Irrational(string irr){ //the constructor that is given a number and
 		}
 		if(logOf == base){
 			fValue = 1;
+			
 		}
 		else if(base == "e"){
 			double a = atof(logOf.c_str());
@@ -107,7 +108,10 @@ string Irrational::toString(){  //prints the string of the irrational
 		return str;
 	}
 	else if(type == "log"){
-		str = "log_" + base + ":" + logOf;
+		if (fValue != 1)
+			str = "log_" + base + ":" + logOf;
+		else 
+			str = "1";
 		return str;
 	}
 	else if(type == "nrt"){
