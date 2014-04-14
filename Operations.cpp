@@ -35,36 +35,36 @@ Number * Operations::add(Number * a, Number * b) {
 			aDenom = a->getDenom();
 			irrStr = b->toString();
 			if (aNum == 1 && aDenom == 1) {
-			irrAns = "1 + " + irrStr;
-			irrVal = b->getValue();
-			ansVal = 1 + irrVal;
-			ans = new Irrational(ansVal, irrAns);
+				irrAns = "1 + " + irrStr;
+				irrVal = b->getValue();
+				ansVal = 1 + irrVal;
+				ans = new Irrational(ansVal, irrAns);
 			}
 			else if(aNum == 1) {
-			stringstream tt;
-			tt<<aDenom;
-			irrAns = "( 1 + " + tt.str() + " * " + irrStr + " ) / " + tt.str();
-			irrVal = b->getValue();
-			ansVal = (float) (1/aDenom) + irrVal;
-			ans = new Irrational(ansVal, irrAns);
+				stringstream tt;
+				tt<<aDenom;
+				irrAns = "( 1 + " + tt.str() + " * " + irrStr + " ) / " + tt.str();
+				irrVal = b->getValue();
+				ansVal = (float) (1/aDenom) + irrVal;
+				ans = new Irrational(ansVal, irrAns);
 			}
 			else if (aDenom == 1) {
-			stringstream ss, tt;
-			ss<<aNum;
-			tt<<aDenom;
-			irrAns = tt.str() + " + " + irrStr;
-			irrVal = b->getValue();
-			ansVal = (float) (aNum/aDenom) + irrVal;
-			ans = new Irrational(ansVal, irrAns);
+				stringstream ss, tt;
+				ss<<aNum;
+				tt<<aDenom;
+				irrAns = tt.str() + " + " + irrStr;
+				irrVal = b->getValue();
+				ansVal = (float) (aNum/aDenom) + irrVal;
+				ans = new Irrational(ansVal, irrAns);
 			}
 			else {
-			stringstream ss, tt;
-			ss<<aNum;
-			tt<<aDenom;
-			irrAns = "( " + ss.str() + " + " + tt.str() + irrStr + " )" + " / " + tt.str();
-			irrVal = b->getValue();
-			ansVal = (float) (aNum/aDenom) + irrVal;
-			ans = new Irrational(ansVal, irrAns);
+				stringstream ss, tt;
+				ss<<aNum;
+				tt<<aDenom;
+				irrAns = "( " + ss.str() + " + " + tt.str() + irrStr + " )" + " / " + tt.str();
+				irrVal = b->getValue();
+				ansVal = (float) (aNum/aDenom) + irrVal;
+				ans = new Irrational(ansVal, irrAns);
 			}
 		}
 		else {
@@ -89,7 +89,7 @@ Number * Operations::add(Number * a, Number * b) {
 			stringstream ss, tt;
 			ss<<bNum;
 			tt<<bDenom;
-			irrAns = irrStr + " + " + tt.str();
+			irrAns = irrStr + " + " + ss.str();
 			irrVal = a->getValue();
 			ansVal = (float) (bNum/bDenom) + irrVal;
 			ans = new Irrational(ansVal, irrAns);
