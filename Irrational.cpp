@@ -24,7 +24,7 @@ Irrational::Irrational(string irr){ //the constructor that is given a number and
 		for(i = 4; ':'!= (int)irr.at(i); i++){
 			base += irr.at(i);
 		}
-		for( ; i< (int)irr.length(); i++){
+		for(i ; i< (int)irr.length(); i++){
 			logOf = irr.at(i);
 		}
 		if(logOf == base){
