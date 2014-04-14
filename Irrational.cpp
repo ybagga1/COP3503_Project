@@ -101,27 +101,29 @@ string Irrational::toString(){  //prints the string of the irrational
 	string str;
 	if(type == "e"){
 		str = "e";
-		return str;
 	}
 	else if(type == "pi"){
 		str = "pi";
-		return str;
 	}
 	else if(type == "log"){
 		if (fValue != 1)
 			str = "log_" + base + ":" + logOf;
 		else 
 			str = "1";
-		return str;
 	}
 	else if(type == "nrt"){
-		if(n == "2"){
+		if(fValue == (int) fValue){
+		// DONT FORGET ATOI
+		stringstream ss;
+		ss<
+			str = fValue;
+		}
+		else if(n == "2"){
 			str = "sqrt:" + rootOf;
 		}
 		else{
 			str = n + "rt:" + rootOf;
 		}
-		return str;
 	}
 	else if (!type.empty()) {
 		return this->type;
@@ -129,6 +131,7 @@ string Irrational::toString(){  //prints the string of the irrational
 	else{
 		return "No toString...error";
 	}
+	return str;
 }
 
 float Irrational::getValue(){
