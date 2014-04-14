@@ -248,6 +248,8 @@ Number * Operations::exponentiate(Number * a, Number * b) {
 		else if (a->getType() == "Rational" && b->getType() == "Rational") {
 			aNum = a->getNum();
 			aDenom = a->getDenom();
+			bDenom = b->getDenom();
+			bNum = b->getNum();
 			if (bDenom == 1) {
 				for (int i = 0; i < bNum; i++) {
 					aNum   *= aNum;
