@@ -172,7 +172,7 @@ bool Shunting::convertInput(const vector<string>& input, const int& size, vector
 //Has to return a number because of the ans keyword
 //Calls parseTokens, then convertInput, then behaves like RPNtoDouble
 //Does this so the main isn't  cluttered like the one we saw
-Number* Shunting:: evaluate(string input)
+Number* Shunting:: evaluate(string input, Number* ansOld)
 {
 
 	Operations* o = new Operations();
