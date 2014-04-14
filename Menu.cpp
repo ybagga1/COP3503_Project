@@ -24,10 +24,10 @@ int main() {
 	cout << "------------------------------------------------------------------------------" << endl;
 	cout << endl;
 	while (computeLoop == 1) {
-		cout << "Enter an expression to compute, menu commands are: " 							 << endl;
-		cout << "Help, Review, Quit" 															 << endl;
+		cout << "Enter an expression to compute, menu commands are: " 					 	 << endl;
+		cout << "Help, Review, Quit" 														 << endl;
 		cout << endl;
-		cout << "Enter an expression or an option from the menu:" 		<< endl;
+		cout << "Enter an expression or an option from the menu:" 							 << endl;
 		cin.clear();
 		computeInput.clear();
 		getline(cin, computeInput);
@@ -82,9 +82,9 @@ int main() {
 					cout << "------------------------------------------------------------------------------" << endl;
 					cout << "Nick Diez: 		Menu and Operations" 										 << endl;
 					cout << "Mathew Giaramita: 	Operations and Irrational" 									 << endl;
-					cout << "Kayleigh Dvorak: 	Shunting and Rational" 						 << endl;
-					cout << "Freddy Jimenez:  	Nothing" 											 << endl;
-					cout << "Yayati Bagga: 		Shunting" 												 << endl;
+					cout << "Kayleigh Dvorak: 	Shunting and Rational" 										 << endl;
+					cout << "Freddy Jimenez:  	Nothing" 													 << endl;
+					cout << "Yayati Bagga: 		Shunting" 													 << endl;
 					cout << "------------------------------------------------------------------------------" << endl;
 				}
 				else if (helpInput.at(0) == '4' ||
@@ -204,7 +204,7 @@ int main() {
 				 computeInput.at(0) == 's' ) {
 				expressionOld = computeInput;
 				cin.clear();
-				ans = s->evaluate(computeInput);
+				ans = s->evaluate(computeInput, ans);
 				cout << "The result of your expression is: " << ans->toString() << endl;
 				computeInput.clear();
 		}
