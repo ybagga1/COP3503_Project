@@ -72,6 +72,14 @@ Number* Rational::simplify() {
 	bool simplified = true;
 	int a= this->getNum();
 	int b = this->getDenom();
+	if (a == b) {
+		Number* one = new Rational(1, 1);
+		return one;
+	}
+	else if (b == 1) {
+		Number* integer = new Rational(a, 1);
+		return integer;
+	}
 	while (simplified) {
 		if (a < b) {
 			for (int i = 2; i < b; i++) {
