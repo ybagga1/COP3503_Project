@@ -263,10 +263,12 @@ Number * Operations::exponentiate(Number * a, Number * b) {
 			aDenom = a->getDenom();
 			bDenom = b->getDenom();
 			bNum = b->getNum();
+			tempNum = aNum;
+			tempDenom = aDenom;
 			if (bDenom == 1) {
 				for (int i = 0; i < bNum; i++) {
-					aNum   *= aNum;
-					aDenom *= aDenom;
+					aNum   *= tempNum;
+					aDenom *= tempDenom;
 				}
 				ans = new Rational(aNum, aDenom);
 			}
