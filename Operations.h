@@ -16,7 +16,7 @@ public:
 	Number* toRational(string a);
 private:
 	int aNum, aDenom, bNum, bDenom, ansNum, ansDenom;
-	float irrVal, irrVal2, ansVal;
+	float irrVal, irrVal2, ansVal logofa, logofb, logofans;
 	string irrAns, irrStr, irrStr2;
 };
 
