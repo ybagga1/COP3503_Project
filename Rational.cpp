@@ -103,8 +103,16 @@ Number* Rational::simplify() {
 			b = 1;
 			simplified = false;
 		}
-		
 	}
 	Number* fraction = new Rational(a, b);
 	return fraction;
+}
+string Rational::getType2() {
+	return "";
+}
+string Rational::getBase() {
+	return "";
+}
+string Rational::getLogOf() {
+	return "";
 }
