@@ -57,13 +57,25 @@ Number * Operations::add(Number * a, Number * b) {
 
 	}
 	else {
-		irrStr  = a->toString(); // supposed to be freddys code, but its not
-		irrStr2 = b->toString();
-		irrAns = irrStr + " + " + irrStr2;
-		irrVal = a->getValue();
-		irrVal2 = b->getValue();
-		ansVal = (float) irrVal + irrVal2;
-		ans = new Irrational(ansVal, irrAns);
+		if((a->getType2() == "log" && b->getType2() == "log") && (a->getBase() == b->getBase())) {
+			logofa = (float)atof(a->getLogOf().c_str);
+			logofb = (float)atof(b->getLogOf().c_str);
+			logofans = logofa * logofb;
+			stringstream ss;
+			ss<< (int) logofans;			
+			ansVal = a->getValue + b->getValue;
+			irrAns = "log_(" + a->getBase() + "):" + ss.str();
+			ans = new Irrational(ansVal, irrAns);
+		}
+		else{		
+			irrStr  = a->toString(); // supposed to be freddys code, but its not
+			irrStr2 = b->toString();
+			irrAns = irrStr + " + " + irrStr2;
+			irrVal = a->getValue();
+			irrVal2 = b->getValue();
+			ansVal = (float) irrVal + irrVal2;
+			ans = new Irrational(ansVal, irrAns);
+		}
 	}
 	ans->simplify();
 	return ans;
@@ -105,6 +117,16 @@ Number * Operations::subtract(Number * a, Number * b) {
 					ans = new Irrational(ansVal, irrAns);
 				}
 
+			}
+			if((a->getType2() == "log" && b->getType2() == "log") && (a->getBase() == b->getBase())) {
+				logofa = (float)atof(a->getLogOf().c_str);
+				logofb = (float)atof(b->getLogOf().c_str);
+				logofans = logofa / logofb;
+				stringstream ss;
+				ss<< (int) logofans;			
+				ansVal = a->getValue - b->getValue;
+				irrAns = "log_(" + a->getBase() + "):" + ss.str();
+				ans = new Irrational(ansVal, irrAns);
 			}
 			else {
 				irrStr  = a->toString();
