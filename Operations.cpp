@@ -58,16 +58,22 @@ Number * Operations::add(Number * a, Number * b) {
 	}
 	else {
 		if((a->getType2() == "log" && b->getType2() == "log") && (a->getBase() == b->getBase())) {
-			logofa = (float)atof(a->getLogOf().c_str);
-			logofb = (float)atof(b->getLogOf().c_str);
+			char* g = new char[a->getLogOf().size()];
+			g[a->getLogOf().size()]= 0;
+			memcpy(g,a->getLogOf().c_str(),a->getLogOf().size());
+			char* h = new char[b->getLogOf().size()];
+			h[b->getLogOf().size()]= 0;
+			memcpy(h,b->getLogOf().c_str(),b->getLogOf().size());
+			logofa = (float)atof(g);
+			logofb = (float)atof(h);
 			logofans = logofa * logofb;
 			stringstream ss;
-			ss<< (int) logofans;			
-			ansVal = a->getValue + b->getValue;
+			ss<< (int) logofans;
+			ansVal = a->getValue() + b->getValue();
 			irrAns = "log_(" + a->getBase() + "):" + ss.str();
 			ans = new Irrational(ansVal, irrAns);
 		}
-		else{		
+		else{
 			irrStr  = a->toString(); // supposed to be freddys code, but its not
 			irrStr2 = b->toString();
 			irrAns = irrStr + " + " + irrStr2;
@@ -119,12 +125,19 @@ Number * Operations::subtract(Number * a, Number * b) {
 
 			}
 			if((a->getType2() == "log" && b->getType2() == "log") && (a->getBase() == b->getBase())) {
-				logofa = (float)atof(a->getLogOf().c_str);
-				logofb = (float)atof(b->getLogOf().c_str);
+
+				char* g = new char[a->getLogOf().size()];
+				g[a->getLogOf().size()]= 0;
+				memcpy(g,a->getLogOf().c_str(),a->getLogOf().size());
+				char* h = new char[b->getLogOf().size()];
+				h[b->getLogOf().size()]= 0;
+				memcpy(h,b->getLogOf().c_str(),b->getLogOf().size());
+				logofa = (float)atof(g);
+				logofb = (float)atof(h);
 				logofans = logofa / logofb;
 				stringstream ss;
-				ss<< (int) logofans;			
-				ansVal = a->getValue - b->getValue;
+				ss<< (int) logofans;
+				ansVal = a->getValue() - b->getValue();
 				irrAns = "log_(" + a->getBase() + "):" + ss.str();
 				ans = new Irrational(ansVal, irrAns);
 			}
@@ -242,7 +255,7 @@ Number * Operations::divide(Number * a, Number * b) {
 }
 Number * Operations::exponentiate(Number * a, Number * b) {
 		Number* ans;
-		if (b->getValue == 1) {
+		if (b->getValue() == 1) {
 			ans = a;
 		}
 		else if (a->getType() == "Rational" && b->getType() == "Rational") {
@@ -279,13 +292,13 @@ Number * Operations::exponentiate(Number * a, Number * b) {
 }
 Number * Operations::toRational(string a) {
 	Number* ans;
-	for (int i =0; i < a.size(); i++) {
-		if (a.at(i) == "." ) {
+	for (int i =0; i < (int)a.size(); i++) {
+		if (a.at(i) == '.' ) {
 			a.erase(i);
 			int power = a.size() - (i + 1);
 			int tenPower = pow (10, power);
 			char *b=new char[a.size()];
-			b[str.size()]=0;
+			b[a.size()]=0;
 			memcpy(b,a.c_str(),a.size());
 			ans = new Rational(atoi(b), tenPower);
 			break;
