@@ -266,7 +266,7 @@ Number * Operations::exponentiate(Number * a, Number * b) {
 			int tempNum = aNum;
 			int tempDenom = aDenom;
 			if (bDenom == 1) {
-				for (int i = 0; i < bNum; i++) {
+				for (int i = 1; i < bNum; i++) {
 					aNum   *= tempNum;
 					aDenom *= tempDenom;
 				}
